@@ -1,0 +1,568 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<meta charset="utf-8">
+<title>Chronic Disease Defence Lab</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Questrial&display=swap">
+<style>
+/* Layout: one narrow column; a home "mission board" of three game tiles; each game is a hash view with a HUD bar on top. */
+:root{
+  --bg:#FFFFFF; --surface:#F1F5F8; --line:#C9D6DF; --ink:#0E1A24; --muted:#3D4F5C;
+  --accent:#1D5C8C; --accent-ink:#FFFFFF; --ok:#17703A; --ok-bg:#E3F3E8; --bad:#B23A12; --bad-bg:#FBE9E2; --warn:#8A5A00;
+  --head:"Century Gothic","Questrial","URW Gothic",Avenir,sans-serif;
+  --body:Tahoma,Verdana,"DejaVu Sans",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F161C; --surface:#18232C; --line:#2E3E4A; --ink:#EEF3F6; --muted:#AEBDC8;
+  --accent:#6FB2E6; --accent-ink:#0B141B; --ok:#6FD394; --ok-bg:#16301F; --bad:#FF9C78; --bad-bg:#3A1E15; --warn:#F2C56B; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F161C; --surface:#18232C; --line:#2E3E4A; --ink:#EEF3F6; --muted:#AEBDC8;
+  --accent:#6FB2E6; --accent-ink:#0B141B; --ok:#6FD394; --ok-bg:#16301F; --bad:#FF9C78; --bad-bg:#3A1E15; --warn:#F2C56B; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55}
+.wrap{max-width:860px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px}
+h1,h2,h3{font-family:var(--head);text-wrap:balance;line-height:1.2;margin:0}
+h1{font-size:clamp(28px,6vw,40px)} h2{font-size:clamp(22px,4.5vw,28px)} h3{font-size:19px}
+p{margin:0}
+.eyebrow{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:bold}
+.stack{display:flex;flex-direction:column;gap:14px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+button{font:inherit;cursor:pointer;border-radius:10px;border:2px solid var(--accent);background:var(--accent);color:var(--accent-ink);padding:10px 16px;font-weight:bold}
+button.ghost{background:transparent;color:var(--accent)}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--warn);outline-offset:2px}
+button:disabled{opacity:.45;cursor:not-allowed}
+a{color:var(--accent)}
+.back{display:inline-block;margin-bottom:12px;font-weight:bold;text-decoration:none}
+/* home */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.tile{display:flex;flex-direction:column;gap:8px;padding:18px;border:2px solid var(--line);border-radius:14px;text-decoration:none;color:var(--ink);background:var(--bg)}
+.tile:hover{border-color:var(--accent)}
+.tile .num{font-family:var(--head);font-size:44px;color:var(--accent);line-height:1}
+.tile .meta{font-size:14px;color:var(--muted)}
+.note{background:var(--surface);border-radius:12px;padding:14px 16px;font-size:15px}
+/* hud */
+.hud{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;padding:10px 14px;background:var(--surface);border-radius:12px;font-variant-numeric:tabular-nums;font-weight:bold}
+.hud .lives{letter-spacing:4px;color:var(--bad)}
+.bar{height:8px;background:var(--line);border-radius:6px;overflow:hidden;flex:1 1 120px;min-width:80px}
+.bar>i{display:block;height:100%;background:var(--accent);transition:width .2s linear}
+.card{border:2px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:12px;background:var(--bg)}
+.opts{display:grid;gap:10px}
+.opt{text-align:left;background:var(--bg);color:var(--ink);border:2px solid var(--line);font-weight:normal}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt.right{background:var(--ok-bg);border-color:var(--ok);opacity:1}
+.opt.wrong{background:var(--bad-bg);border-color:var(--bad);opacity:1}
+.fb{border-left:5px solid var(--ok);background:var(--ok-bg);padding:10px 14px;border-radius:8px}
+.fb.no{border-color:var(--bad);background:var(--bad-bg)}
+.pathogen{font-family:var(--head);font-size:15px;color:var(--bad);font-weight:bold}
+/* sort */
+.factor{font-family:var(--head);font-size:24px;text-align:center;padding:22px 12px;border:2px dashed var(--accent);border-radius:14px}
+.bins{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.bins button{padding:16px 10px;min-height:64px}
+/* lab */
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.products button{background:var(--bg);color:var(--ink);border-color:var(--line);text-align:left;font-weight:normal}
+.products button[aria-pressed="true"]{border-color:var(--accent);background:var(--surface);font-weight:bold}
+.lever{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center}
+.lever input[type=range]{grid-column:1/-1;width:100%;accent-color:var(--accent)}
+.lever output{font-variant-numeric:tabular-nums;font-weight:bold}
+.tech{display:flex;flex-direction:column;gap:8px}
+.tech label{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:2px solid var(--line);border-radius:10px;cursor:pointer}
+.tech input{margin-top:4px;width:18px;height:18px;accent-color:var(--accent)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.grid2>*{min-width:0}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font-size:15px}
+th,td{border-bottom:1px solid var(--line);padding:7px 6px;text-align:left}
+td.ok{color:var(--ok);font-weight:bold} td.no{color:var(--bad);font-weight:bold}
+.meter{height:14px;border-radius:8px;background:var(--line);overflow:hidden}
+.meter>i{display:block;height:100%;transition:width .25s}
+.big{font-family:var(--head);font-size:34px;font-variant-numeric:tabular-nums}
+.pill{display:inline-block;padding:3px 10px;border-radius:99px;font-size:13px;font-weight:bold;background:var(--surface);border:1px solid var(--line)}
+.pill.ok{color:var(--ok);border-color:var(--ok)} .pill.no{color:var(--bad);border-color:var(--bad)}
+textarea{width:100%;min-height:110px;font:inherit;font-size:15px;padding:10px;border-radius:10px;border:2px solid var(--line);background:var(--bg);color:var(--ink)}
+.small{font-size:14px;color:var(--muted)}
+.list{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:6px}
+details.card summary{cursor:pointer}
+details.card[open] summary{margin-bottom:4px}
+video{width:100%;max-width:100%;aspect-ratio:16/9;background:#000;border-radius:10px;display:block}
+.vprog{display:flex;gap:12px;align-items:center}
+.lockmsg{padding:12px 14px;border:2px dashed var(--line);border-radius:10px;font-weight:bold}
+.tile .pill{align-self:flex-start}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+
+<!-- HOME -->
+<section id="v-home" class="stack">
+  <p class="eyebrow">Nutrition &amp; Health · Food Biotechnology / Food Science · USIM</p>
+  <h1>Nutrition and Chronic Diseases</h1>
+  <p>Welcome to this week's online lecture. It covers <b>the immune system</b> and <b>nutrition and diseases</b>: cardiovascular disease, hypertension, type 2 diabetes and cancer. All values follow the <b>Recommended Nutrient Intakes for Malaysia (RNI 2017)</b>, with background from Sizer &amp; Whitney, <i>Nutrition: Concepts and Controversies</i>, Chapter 11.</p>
+  <div class="note"><b>How it works.</b> The lecture has three video sections, about 25 minutes in total. Each section unlocks a short game. Watch Section 1, play Activity 1, then go on to Section 2, and so on. You can open the slides and the summary at any time.</div>
+
+  <h2>Learning path</h2>
+  <div class="tiles">
+    <a class="tile" href="#activity-1"><span class="num">1</span><h3>The immune system</h3><p>Video, 9 min · then <b>Activity 1: Defend the Body</b>, a pathogen-wave quiz with three shields.</p><span class="pill" id="t1-pill">Start here</span></a>
+    <a class="tile" href="#activity-2"><span class="num">2</span><h3>Risk factors, CVD, hypertension and diabetes</h3><p>Video, 10 min · then <b>Activity 2: Risk Factor Rush</b>, a timed sorting game.</p><span class="pill" id="t2-pill">Locked</span></a>
+    <a class="tile" href="#activity-3"><span class="num">3</span><h3>Cancer, processing, herbs and genes</h3><p>Video, 5 min · then <b>Activity 3: Reformulation Lab</b>, where you redesign a food product.</p><span class="pill" id="t3-pill">Locked</span></a>
+  </div>
+
+  <div class="tiles">
+    <a class="tile" href="#slides"><h3>Lecture slides</h3><p>Browse all 39 slides at your own pace.</p><span class="meta">Always open</span></a>
+    <a class="tile" href="#summary"><h3>Summary and self-check</h3><p>Key messages, practice questions with answers, and references.</p><span class="meta">Always open</span></a>
+  </div>
+
+  <div class="grid2">
+    <div class="card"><h3>Learning objectives</h3><p class="small">This lecture aims to:</p>
+      <ul class="list">
+        <li>Introduce the body's defence systems and the nutrients that support them.</li>
+        <li>Explain the two-way relationship between malnutrition and infection.</li>
+        <li>Introduce the concept of risk factors for chronic diseases.</li>
+        <li>Explain how diet affects cardiovascular disease, hypertension, type 2 diabetes and cancer.</li>
+        <li>Apply RNI 2017 and food science strategies to reduce chronic disease risk.</li>
+      </ul></div>
+    <div class="card"><h3>Learning outcomes</h3><p class="small">By the end, you should be able to:</p>
+      <ol class="list">
+        <li>Describe how specific nutrients support immune defence <span class="pill">C1</span></li>
+        <li>Explain how malnutrition and infection worsen each other <span class="pill">C2</span></li>
+        <li>Classify risk factors as modifiable or non-modifiable <span class="pill">C2</span></li>
+        <li>Explain how fats, sodium, sugars and fibre affect chronic disease risk <span class="pill">C2</span></li>
+        <li>Apply RNI 2017 targets to reformulate a food product <span class="pill">C3</span></li>
+      </ol></div>
+  </div>
+  <p class="note">Your video progress is remembered in this browser only, so use the same device and browser. Game answers are not saved or sent anywhere; copy your group summary into the GOALS forum before you close the page.</p>
+  <p class="small">Lecture by Dr. Syamila binti Mansor, Faculty of Science and Technology, USIM.</p>
+</section>
+
+<!-- SLIDES -->
+<section id="v-slides" class="stack" hidden>
+  <a class="back" href="#home">← Home</a>
+  <p class="eyebrow">Lecture slides</p>
+  <h2>Nutrition and Chronic Diseases: slides</h2>
+  <div class="card">
+    <img id="sl-img" src="slides/slide-01.jpg" alt="Slide 1" width="1280" height="720" style="width:100%;height:auto;border:1px solid var(--line);border-radius:8px;background:#fff">
+    <div class="row" style="justify-content:space-between">
+      <button id="sl-prev" class="ghost">← Previous</button>
+      <span id="sl-num" style="font-variant-numeric:tabular-nums;font-weight:bold">1 / 39</span>
+      <button id="sl-next">Next →</button>
+    </div>
+    <label for="sl-jump" class="small">Jump to a part</label>
+    <select id="sl-jump" style="font:inherit;padding:8px;border-radius:8px;border:2px solid var(--line);background:var(--bg);color:var(--ink)">
+      <option value="1">Opening: objectives and outcomes</option>
+      <option value="8">Part A: The immune system</option>
+      <option value="17">Part B: Risk factors and heart disease</option>
+      <option value="26">Part B: Hypertension and diabetes</option>
+      <option value="31">Part B: Cancer, herbs and genes</option>
+      <option value="37">Summary and references</option>
+    </select>
+    <p class="small">Tip: use the left and right arrow keys. QR codes on the slides point back to this website.</p>
+    <p><a href="slides/Nutrition_and_Chronic_Diseases_slides.pdf" download>Download all slides (PDF, 3.6 MB)</a></p>
+  </div>
+</section>
+
+<!-- SUMMARY -->
+<section id="v-summary" class="stack" hidden>
+  <a class="back" href="#home">← Home</a>
+  <p class="eyebrow">Summary and self-check</p>
+  <h2>Key messages</h2>
+  <div class="grid2">
+    <div class="card"><h3>Immunity</h3><p>Every line of defence needs adequate protein, vitamins A, C, D and E, zinc and iron. Meet the RNI; more is not better. RNI 2017 notes that zinc at 100–300 mg/day reduces immune function.</p></div>
+    <div class="card"><h3>The vicious cycle</h3><p>Malnutrition weakens immunity, and infection worsens malnutrition by raising needs and lowering intake and absorption.</p></div>
+    <div class="card"><h3>Inflammation</h3><p>Chronic, low-grade inflammation links the immune system to atherosclerosis, type 2 diabetes and some cancers.</p></div>
+    <div class="card"><h3>Risk factors</h3><p>Shared across CVD, hypertension, diabetes and cancer. Age, sex and genes cannot change; diet, activity, smoking and weight can.</p></div>
+    <div class="card"><h3>RNI 2017 targets</h3><p>Fat 25–30% of total energy intake (TEI); saturated fat &lt; 10% TEI; free sugars ≤ 10% TEI; fibre 20–30 g/day; sodium AI 1500 mg/day and UL 2300 mg/day; potassium AI 4.7 g/day.</p></div>
+    <div class="card"><h3>Food science</h3><p>Reformulation (less salt, better fats, less sugar, more fibre) and processing control (less acrylamide and charring) lower risk for whole populations.</p></div>
+  </div>
+  <h2>Check your understanding</h2>
+  <div class="stack">
+    <details class="card"><summary><b>1. Explain why vitamin A deficiency increases the risk of infection. (C2)</b></summary><p>Vitamin A maintains epithelial tissues and mucus-producing goblet cells. In deficiency these barriers flatten, dry out and make less mucus, so pathogens enter more easily. Immune cell function is also impaired.</p></details>
+    <details class="card"><summary><b>2. Explain how infection can worsen a child's nutritional status. (C2)</b></summary><p>Fever and tissue repair raise nutrient needs, while poor appetite lowers intake and diarrhoea reduces absorption. Nutrient stores fall, so malnutrition worsens and immunity weakens further.</p></details>
+    <details class="card"><summary><b>3. Classify: age, smoking, sodium intake, family history. (C2)</b></summary><p>Non-modifiable: age, family history. Modifiable: smoking, sodium intake.</p></details>
+    <details class="card"><summary><b>4. Explain why high LDL and low HDL raise CVD risk. (C2)</b></summary><p>LDL carries cholesterol to tissues; when it enters the artery wall and is oxidised, macrophages take it up and form plaque. HDL carries cholesterol back to the liver for disposal, so low HDL means less removal.</p></details>
+    <details class="card"><summary><b>5. A ready meal has 900 mg sodium. What share of the adult UL is this? (C3)</b></summary><p>900 ÷ 2300 × 100 ≈ 39% of the RNI 2017 Tolerable Upper Intake Level in a single meal.</p></details>
+  </div>
+  <h2>References</h2>
+  <ul class="list small">
+    <li>National Coordinating Committee on Food and Nutrition (2017). <i>Recommended Nutrient Intakes for Malaysia (RNI 2017)</i>. Ministry of Health Malaysia.</li>
+    <li>Sizer, F. S., &amp; Whitney, E. N. <i>Nutrition: Concepts and Controversies</i>. Cengage Learning. Chapter 11 and Controversy 11.</li>
+    <li>Institute for Public Health (2024). <i>National Health and Morbidity Survey (NHMS) 2023: Non-communicable Diseases and Healthcare Demand</i>. Fact sheet. Ministry of Health Malaysia.</li>
+    <li>Institute for Public Health (2016). <i>MySalt 2015: Determination of dietary sodium intake among Ministry of Health staff</i>. Ministry of Health Malaysia.</li>
+  </ul>
+</section>
+
+<!-- ACTIVITY 1 -->
+<section id="v-activity-1" class="stack" hidden>
+  <a class="back" href="#home">← Home</a>
+  <p class="eyebrow">Activity 1 · Immune system and nutrition</p>
+  <h2>Defend the Body</h2>
+<div class="card vidcard" id="v1-box">
+    <div class="row" style="justify-content:space-between"><p class="eyebrow">Step 1 · Watch video Section 1: The immune system</p><span class="pill" id="v1-pill">Not watched</span></div>
+    
+    <div id="v1-player" class="stack">
+      <video id="vid1" controls playsinline preload="metadata" controlslist="nodownload" poster="video/section-1.jpg"><source src="video/section-1.mp4" type="video/mp4"></video>
+      <div class="vprog"><div class="bar"><i id="v1-bar" style="width:0%"></i></div><span class="small" id="v1-txt">0% watched</span></div>
+      <p class="small">Watch to the end to unlock the activity. You cannot skip ahead, but you can go back to replay any part. Captions (CC) are available.</p>
+    </div>
+  </div>
+  <p class="eyebrow">Step 2 · Activity</p>
+  <p class="lockmsg" id="a1-lock">🔒 This activity unlocks when you finish the Section 1 video.</p>
+  <div id="a1-wrap" class="stack" hidden>
+  <div id="a1-intro" class="stack">
+    <p>Each question is a pathogen wave. A correct answer blocks it (+100, with a streak bonus). A wrong answer or running out of time costs one shield. You have <b>3 shields</b> and <b>25 seconds</b> per wave.</p>
+    <div class="row"><button id="a1-start">Start defence</button></div>
+  </div>
+  <div id="a1-game" class="stack" hidden>
+    <div class="hud"><span>Wave <span id="a1-wave">1</span>/10</span><span>Score <span id="a1-score">0</span></span><span class="lives" id="a1-lives" aria-label="Shields left">🛡🛡🛡</span><span class="bar" aria-hidden="true"><i id="a1-timer" style="width:100%"></i></span></div>
+    <div class="card">
+      <p class="pathogen" id="a1-path"></p>
+      <h3 id="a1-q"></h3>
+      <div class="opts" id="a1-opts"></div>
+      <div id="a1-fb" hidden></div>
+      <div class="row"><button id="a1-next" hidden>Next wave</button></div>
+    </div>
+  </div>
+  <div id="a1-end" class="stack" hidden>
+    <div class="card">
+      <p class="eyebrow" id="a1-verdict"></p>
+      <p class="big" id="a1-final"></p>
+      <p id="a1-msg"></p>
+      <h3>Group summary</h3>
+      <textarea id="a1-sum" aria-label="Group summary for Activity 1">In two sentences, explain how malnutrition and infection make each other worse. Name one nutrient and how it supports immunity.</textarea>
+      <div class="row"><button id="a1-copy" class="ghost">Copy summary</button><button id="a1-again">Play again</button></div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- ACTIVITY 2 -->
+<section id="v-activity-2" class="stack" hidden>
+  <a class="back" href="#home">← Home</a>
+  <p class="eyebrow">Activity 2 · Risk factors for chronic diseases</p>
+  <h2>Risk Factor Rush</h2>
+<div class="card vidcard" id="v2-box">
+    <div class="row" style="justify-content:space-between"><p class="eyebrow">Step 1 · Watch video Section 2: Risk factors, CVD, hypertension and diabetes</p><span class="pill" id="v2-pill">Not watched</span></div>
+    <p class="lockmsg" id="v2-prev" hidden>Finish the <a href="#activity-1">Section 1 video</a> first. Section 2 unlocks after it.</p>
+    <div id="v2-player" class="stack">
+      <video id="vid2" controls playsinline preload="metadata" controlslist="nodownload" poster="video/section-2.jpg"><source src="video/section-2.mp4" type="video/mp4"></video>
+      <div class="vprog"><div class="bar"><i id="v2-bar" style="width:0%"></i></div><span class="small" id="v2-txt">0% watched</span></div>
+      <p class="small">Watch to the end to unlock the activity. You cannot skip ahead, but you can go back to replay any part. Captions (CC) are available.</p>
+    </div>
+  </div>
+  <p class="eyebrow">Step 2 · Activity</p>
+  <p class="lockmsg" id="a2-lock">🔒 This activity unlocks when you finish the Section 2 video.</p>
+  <div id="a2-wrap" class="stack" hidden>
+  <div id="a2-intro" class="stack">
+    <p><b>Round 1:</b> can a person change this risk factor? Tap <i>Modifiable</i> or <i>Non-modifiable</i>.<br><b>Round 2:</b> which chronic disease is this dietary factor <b>most strongly</b> linked to?</p>
+    <p>+10 for each correct answer, double points after a streak of 3, −5 for a wrong answer. Each round lasts 60 seconds.</p>
+    <div class="row"><button id="a2-start">Start Round 1</button></div>
+  </div>
+  <div id="a2-game" class="stack" hidden>
+    <div class="hud"><span id="a2-round">Round 1</span><span>Score <span id="a2-score">0</span></span><span>Streak <span id="a2-streak">0</span></span><span><span id="a2-left">60</span> s</span><span class="bar" aria-hidden="true"><i id="a2-timer" style="width:100%"></i></span></div>
+    <div class="card">
+      <p class="small" id="a2-count"></p>
+      <div class="factor" id="a2-factor"></div>
+      <div class="bins" id="a2-bins"></div>
+      <div id="a2-fb" hidden></div>
+    </div>
+  </div>
+  <div id="a2-mid" class="stack" hidden>
+    <div class="card"><p class="eyebrow">Round 1 complete</p><p class="big" id="a2-r1"></p><p>Notice that blood pressure, LDL cholesterol and blood glucose are not on the list. They are risk factors too, and diet and activity can change them.</p><div class="row"><button id="a2-start2">Start Round 2</button></div></div>
+  </div>
+  <div id="a2-end" class="stack" hidden>
+    <div class="card">
+      <p class="eyebrow">Final score</p>
+      <p class="big" id="a2-final"></p>
+      <h3>Answers you missed</h3>
+      <div id="a2-missed"></div>
+      <h3>Group summary</h3>
+      <textarea id="a2-sum" aria-label="Group summary for Activity 2">Choose one chronic disease. List two non-modifiable and three modifiable risk factors, and explain why one dietary factor raises the risk.</textarea>
+      <div class="row"><button id="a2-copy" class="ghost">Copy summary</button><button id="a2-again">Play again</button></div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- ACTIVITY 3 -->
+<section id="v-activity-3" class="stack" hidden>
+  <a class="back" href="#home">← Home</a>
+  <p class="eyebrow">Activity 3 · Food science for chronic disease prevention</p>
+  <h2>Reformulation Lab</h2>
+<div class="card vidcard" id="v3-box">
+    <div class="row" style="justify-content:space-between"><p class="eyebrow">Step 1 · Watch video Section 3: Cancer, processing, herbs and genes</p><span class="pill" id="v3-pill">Not watched</span></div>
+    <p class="lockmsg" id="v3-prev" hidden>Finish the <a href="#activity-2">Section 2 video</a> first. Section 3 unlocks after it.</p>
+    <div id="v3-player" class="stack">
+      <video id="vid3" controls playsinline preload="metadata" controlslist="nodownload" poster="video/section-3.jpg"><source src="video/section-3.mp4" type="video/mp4"></video>
+      <div class="vprog"><div class="bar"><i id="v3-bar" style="width:0%"></i></div><span class="small" id="v3-txt">0% watched</span></div>
+      <p class="small">Watch to the end to unlock the activity. You cannot skip ahead, but you can go back to replay any part. Captions (CC) are available.</p>
+    </div>
+  </div>
+  <p class="eyebrow">Step 2 · Activity</p>
+  <p class="lockmsg" id="a3-lock">🔒 This activity unlocks when you finish the Section 3 video.</p>
+  <div id="a3-wrap" class="stack" hidden>
+  <p>Pick a product. Use the levers to bring one serving within the targets, and keep the sensory acceptance score at <b>70 or more</b>. Your R&amp;D budget covers <b>only two technologies</b>, so choose carefully.</p>
+  <div class="products" id="a3-products" role="group" aria-label="Choose a product"></div>
+  <div class="grid2">
+    <div class="card">
+      <h3>Levers</h3>
+      <div class="lever"><label for="lv-salt">Cut added salt</label><output id="o-salt">0%</output><input type="range" id="lv-salt" min="0" max="60" step="5" value="0"></div>
+      <div class="lever"><label for="lv-fat">Replace saturated fat with unsaturated oil</label><output id="o-fat">0%</output><input type="range" id="lv-fat" min="0" max="100" step="10" value="0"></div>
+      <div class="lever"><label for="lv-sugar">Cut added sugar</label><output id="o-sugar">0%</output><input type="range" id="lv-sugar" min="0" max="60" step="5" value="0"></div>
+      <div class="lever"><label for="lv-fibre">Add dietary fibre (oat β-glucan / resistant dextrin)</label><output id="o-fibre">0 g</output><input type="range" id="lv-fibre" min="0" max="6" step="0.5" value="0"></div>
+      <h3>Technologies <span class="pill" id="a3-budget">0 of 2 used</span></h3>
+      <div class="tech">
+        <label><input type="checkbox" id="t-salt"><span><b>Salt replacer:</b> potassium chloride + yeast extract. Keeps saltiness and umami when you cut more salt.</span></label>
+        <label><input type="checkbox" id="t-fat"><span><b>Oleogel / fat structuring:</b> gels liquid oil so it behaves like solid fat. Protects texture.</span></label>
+        <label><input type="checkbox" id="t-sugar"><span><b>Stevia + polydextrose:</b> sweetness from stevia, bulk from a soluble fibre. Protects sweetness and body.</span></label>
+      </div>
+    </div>
+    <div class="card">
+      <h3 id="a3-name">Product</h3>
+      <p class="small" id="a3-desc"></p>
+      <table aria-label="Nutrients per serving against targets">
+        <thead><tr><th>Per serving</th><th>Now</th><th>Target</th><th></th></tr></thead>
+        <tbody id="a3-table"></tbody>
+      </table>
+      <div><div class="row" style="justify-content:space-between"><b>Sensory acceptance</b><span id="a3-acc" class="big" style="font-size:24px"></span></div><div class="meter"><i id="a3-accbar"></i></div><p class="small" id="a3-accwhy"></p></div>
+      <div class="row"><span class="pill" id="a3-status"></span></div>
+      <p id="a3-verdict"></p>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Group summary</h3>
+    <textarea id="a3-sum" aria-label="Group summary for Activity 3"></textarea>
+    <div class="row"><button id="a3-copy" class="ghost">Copy summary</button></div>
+  </div>
+  <p class="note"><b>How the targets are set.</b> One serving is treated as one-quarter of a day's eating (about 500 kcal of a 2000 kcal day). Sodium: ≤ 575 mg, one-quarter of the RNI 2017 Tolerable Upper Intake Level (UL) of 2300 mg/day. Saturated fat: &lt; 10% of total energy intake (TEI), so ≤ 5.5 g. Free sugars: ≤ 10% TEI, so ≤ 12.5 g. Dietary fibre: 20–30 g/day, so ≥ 5 g. Product values are illustrative teaching figures, not data for real brands.</p>
+  </div>
+</section>
+
+</div>
+
+<script>
+(function(){
+const $=id=>document.getElementById(id);
+function copyText(btn, ta){
+  const t=ta.value;
+  const done=()=>{btn.textContent='Copied';setTimeout(()=>btn.textContent='Copy summary',1500)};
+  try{navigator.clipboard.writeText(t).then(done,()=>{ta.select();btn.textContent='Text selected: press Ctrl+C'});}
+  catch(e){ta.select();btn.textContent='Text selected: press Ctrl+C'}
+}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+
+/* ---------- ROUTER ---------- */
+const views=['home','activity-1','activity-2','activity-3','slides','summary'];
+function route(){const h=location.hash.slice(1);const v=views.includes(h)?h:'home';views.forEach(x=>$('v-'+x).hidden=x!==v);window.scrollTo(0,0);if(v!=='activity-1')stopA1();if(v!=='activity-2')stopA2();[1,2,3].forEach(n=>{const el=$('vid'+n);if(el&&!el.paused)el.pause()});}
+window.addEventListener('hashchange',route);
+
+/* ---------- ACTIVITY 1 ---------- */
+const PATH=['Wave of cold viruses','Gut bacteria invasion','Influenza attack','Wound infection','Parasite infestation','Respiratory infection','Fungal invasion','Diarrhoeal pathogen','Measles outbreak','Opportunistic bacteria'];
+const Q1=[
+ {q:'Why does vitamin A deficiency make a child more likely to get infections?',o:['It lowers blood sugar.','It weakens the skin and mucous membranes that block pathogens.','It increases the number of red blood cells.','It makes the stomach produce more acid.'],a:1,e:'RNI 2017: vitamin A maintains epithelial cells and mucus-secreting goblet cells. Without it these barriers flatten and dry out, so pathogens enter more easily.'},
+ {q:'Which statement BEST describes the malnutrition–infection cycle?',o:['Infection improves appetite, so malnutrition corrects itself.','Malnutrition weakens immunity, and infection raises nutrient needs while lowering intake and absorption.','Malnutrition only affects growth, not immunity.','Infection and malnutrition are unrelated.'],a:1,e:'Each makes the other worse: a weak immune system lets infection in, and infection (fever, diarrhoea, poor appetite) drains nutrients further.'},
+ {q:'Protein–energy malnutrition shrinks the thymus. What is the MOST likely effect?',o:['More antibodies are made.','Fewer T cells, so cell-mediated immunity is weaker.','Better wound healing.','Higher body temperature.'],a:1,e:'The thymus matures T lymphocytes. Protein–energy malnutrition reduces lymphoid tissue, T cells and antibody production.'},
+ {q:'RNI 2017 notes that very high zinc intakes (100–300 mg/day) can',o:['cure all infections.','reduce immune function and lower HDL cholesterol.','increase vitamin C absorption.','prevent iron deficiency.'],a:1,e:'Zinc supports almost every part of immunity, but more is not better. Excess zinc impairs immune function and lowers HDL. Aim to meet the RNI, not exceed the UL.'},
+ {q:'How is chronic inflammation linked to chronic diseases such as heart disease?',o:['It cools the body and slows metabolism.','Inflammatory cells and oxidative products keep damaging tissues, such as artery walls.','It increases HDL cholesterol.','It only affects the skin.'],a:1,e:'Short-term inflammation protects. When it persists, white blood cells release oxidants that damage tissues, which helps drive atherosclerosis, diabetes and some cancers.'},
+ {q:'A student takes a high-dose "immune booster" supplement daily but eats few fruits and vegetables. What is the best advice?',o:['Double the supplement dose.','Eat a varied diet that meets the RNI. Supplements cannot replace food, and excess doses may harm.','Stop eating protein.','Drink only fruit juice.'],a:1,e:'Sizer & Whitney: no single nutrient or pill "boosts" immunity. Adequate intake of many nutrients from varied foods supports the immune system; excess can be harmful.'},
+ {q:'Fermented foods such as yoghurt and tempeh may support immunity MAINLY because they',o:['contain no protein.','provide live microbes that support a healthy gut barrier and gut immune tissue.','are high in sodium.','raise blood glucose quickly.'],a:1,e:'Much of the body\'s immune tissue lines the gut. Beneficial microbes (probiotics) help keep the gut barrier and gut-associated immune responses healthy.'},
+ {q:'Omega-3 fatty acids from fish such as ikan kembung are linked with lower chronic disease risk because they',o:['raise LDL cholesterol.','help reduce inflammation and lower blood triglycerides.','are saturated fats.','block vitamin absorption.'],a:1,e:'EPA and DHA produce less inflammatory signalling molecules than omega-6 fats and help lower triglycerides. RNI 2017 recommends n-3 PUFA at 0.3–1.2% of total energy intake.'},
+ {q:'Which group is MOST at risk of malnutrition-related weak immunity?',o:['Healthy young athletes.','Older adults with poor appetite and hospitalised patients.','Office workers who eat balanced meals.','Teenagers who eat fruit daily.'],a:1,e:'Older adults, people who are ill or hospitalised, and children in poor households often have low intakes and high needs, so their defences weaken first.'},
+ {q:'Vitamin C supports immune function. What happens to vitamin C taken far above need?',o:['It is stored in fat tissue for years.','Absorption falls and the excess is excreted in urine.','It turns into vitamin A.','It doubles the number of white blood cells.'],a:1,e:'Vitamin C is water-soluble. Phagocytes use it, but intakes well above the RNI are poorly absorbed and excreted, so megadoses give little extra benefit.'},
+ {q:'Iron deficiency anaemia is linked with weaker immunity because iron is needed for',o:['making bile.','enzymes that white blood cells use to kill pathogens and for immune cell growth.','storing vitamin D.','digesting fibre.'],a:1,e:'Iron-containing enzymes help phagocytes kill microbes, and immune cells need iron to multiply. Deficiency impairs these responses.'},
+ {q:'Vitamin D is linked with immunity because it',o:['is a source of energy.','helps regulate immune cell responses, including control of inflammation.','replaces protein in antibodies.','is made in the stomach.'],a:1,e:'Immune cells such as macrophages carry vitamin D receptors. Vitamin D helps them respond to infection while keeping inflammation in check.'}
+];
+let A1={};let a1t=null;
+function stopA1(){clearInterval(a1t);a1t=null}
+function a1Start(){A1={qs:shuffle(Q1).slice(0,10).map(q=>{const idx=shuffle([0,1,2,3]);return{...q,o:idx.map(i=>q.o[i]),a:idx.indexOf(q.a)}}),i:0,score:0,lives:3,streak:0};$('a1-intro').hidden=true;$('a1-end').hidden=true;$('a1-game').hidden=false;a1Show()}
+function a1Lives(){$('a1-lives').textContent='🛡'.repeat(A1.lives)+'·'.repeat(3-A1.lives)}
+function a1Show(){
+  const q=A1.qs[A1.i];$('a1-wave').textContent=A1.i+1;$('a1-score').textContent=A1.score;a1Lives();
+  $('a1-path').textContent='⚠ '+PATH[A1.i%PATH.length];$('a1-q').textContent=q.q;$('a1-fb').hidden=true;$('a1-next').hidden=true;
+  const box=$('a1-opts');box.innerHTML='';
+  q.o.forEach((t,k)=>{const b=document.createElement('button');b.className='opt';b.id='a1-o'+k;b.textContent=String.fromCharCode(65+k)+'.  '+t;b.onclick=()=>a1Answer(k);box.appendChild(b)});
+  let left=25;$('a1-timer').style.width='100%';stopA1();
+  a1t=setInterval(()=>{left-=0.25;$('a1-timer').style.width=Math.max(0,left/25*100)+'%';if(left<=0){stopA1();a1Answer(-1)}},250);
+}
+function a1Answer(k){
+  stopA1();const q=A1.qs[A1.i];const btns=[...$('a1-opts').children];btns.forEach(b=>b.disabled=true);
+  btns[q.a].classList.add('right');const ok=k===q.a;
+  if(ok){A1.streak++;A1.score+=100+(A1.streak>=3?50:0)}else{A1.streak=0;A1.lives--;if(k>=0)btns[k].classList.add('wrong')}
+  const fb=$('a1-fb');fb.hidden=false;fb.className=ok?'fb':'fb no';
+  fb.innerHTML='<b>'+(ok?(A1.streak>=3?'Blocked! Streak bonus +50.':'Blocked!'):(k<0?'Too slow. Shield lost.':'Shield lost.'))+'</b> '+q.e;
+  $('a1-score').textContent=A1.score;a1Lives();
+  const over=A1.lives<=0||A1.i>=A1.qs.length-1;$('a1-next').hidden=false;$('a1-next').textContent=over?'See result':'Next wave';$('a1-next').focus();
+}
+function a1Next(){if(A1.lives<=0||A1.i>=A1.qs.length-1)return a1End();A1.i++;a1Show()}
+function a1End(){
+  $('a1-game').hidden=true;$('a1-end').hidden=false;const won=A1.lives>0;
+  $('a1-verdict').textContent=won?'Body defended':'Infection broke through';
+  $('a1-final').textContent=A1.score+' points';
+  $('a1-msg').textContent=won?'You held off all 10 waves with '+A1.lives+' shield(s) left. Adequate, varied nutrition keeps every line of defence working.':'You reached wave '+(A1.i+1)+'. Read the explanations again, then try for a full defence.';
+}
+$('a1-start').onclick=a1Start;$('a1-next').onclick=a1Next;$('a1-again').onclick=a1Start;$('a1-copy').onclick=()=>copyText($('a1-copy'),$('a1-sum'));
+
+/* ---------- ACTIVITY 2 ---------- */
+const R1=[
+ ['Increasing age','N','Risk of CVD, cancer and diabetes rises with age. It cannot be changed.'],
+ ['Male sex','N','Men develop heart disease earlier than women. Sex cannot be changed.'],
+ ['Family history of early heart disease','N','Genes are inherited, although a healthy lifestyle can lessen their effect.'],
+ ['Genetic make-up / ethnicity','N','Some ethnic groups have higher diabetes risk at a lower BMI. Genes cannot be changed.'],
+ ['High salt (sodium) intake','M','Diet can be changed. RNI 2017 sets the adult AI for sodium at 1500 mg/day and the UL at 2300 mg/day.'],
+ ['Cigarette smoking','M','Stopping smoking quickly lowers heart disease risk.'],
+ ['Physical inactivity','M','Regular activity raises HDL, lowers blood pressure and improves insulin sensitivity.'],
+ ['Abdominal obesity','M','Body fat, especially around the waist, responds to diet and activity.'],
+ ['Diet high in saturated and trans fat','M','RNI 2017: saturated fat < 10% of total energy, trans fat as low as practical.'],
+ ['Heavy alcohol intake','M','Alcohol is a behaviour and can be reduced or avoided.'],
+ ['Low fruit and vegetable intake','M','NHMS 2023 found 95.1% of Malaysian adults eat fewer than 5 servings a day. This can change.'],
+ ['High intake of sugary drinks','M','RNI 2017: free sugars ≤ 10% of total energy intake.']
+];
+const BINS2=['Cardiovascular disease','Hypertension','Type 2 diabetes','Cancer'];
+const R2=[
+ ['Diet high in saturated and trans fat',0,'These fats raise LDL cholesterol, which drives plaque formation in arteries (atherosclerosis).'],
+ ['High salt intake',1,'Sodium increases blood volume and pressure. RNI 2017 cites WHO evidence that cutting sodium lowers systolic and diastolic pressure.'],
+ ['Low potassium intake (few fruits and vegetables)',1,'Potassium helps the kidneys excrete sodium and relaxes blood vessels. RNI 2017 adult AI: 4.7 g/day.'],
+ ['Excess energy intake leading to obesity',2,'Excess body fat, especially abdominal fat, causes insulin resistance, the main defect in type 2 diabetes.'],
+ ['Frequent sugary drinks',2,'Sugary drinks add energy without fullness, which promotes weight gain and insulin resistance.'],
+ ['High intake of red and processed meat',3,'Linked with colorectal cancer. Processing (curing, smoking) and high-temperature cooking form carcinogens.'],
+ ['Salted, pickled and smoked foods',3,'High salt intake is linked with stomach cancer. RNI 2017 reports a 68% higher risk with high salt intake.'],
+ ['Heavy alcohol intake',3,'Alcohol is a known carcinogen, linked with cancers of the mouth, throat, liver and breast.'],
+ ['Low intake of oily fish (omega-3)',0,'EPA and DHA lower triglycerides and inflammation and reduce blood clotting, which protects the heart.'],
+ ['Low intake of whole grains and fibre',2,'Fibre-rich, whole-grain foods slow glucose absorption and improve insulin sensitivity.']
+];
+let A2={};let a2t=null;
+function stopA2(){clearInterval(a2t);a2t=null}
+function a2Round(r){
+  A2.round=r;A2.i=0;A2.streak=0;A2.left=60;A2.items=shuffle(r===1?R1:R2);
+  $('a2-intro').hidden=true;$('a2-mid').hidden=true;$('a2-end').hidden=true;$('a2-game').hidden=false;
+  $('a2-round').textContent='Round '+r;
+  const bins=$('a2-bins');bins.innerHTML='';
+  const labels=r===1?['Modifiable','Non-modifiable']:BINS2;
+  labels.forEach((l,k)=>{const b=document.createElement('button');b.id='a2-b'+k;b.textContent=l;b.onclick=()=>a2Pick(k);bins.appendChild(b)});
+  a2Show();stopA2();
+  a2t=setInterval(()=>{A2.left-=1;$('a2-left').textContent=A2.left;$('a2-timer').style.width=(A2.left/60*100)+'%';if(A2.left<=0){stopA2();a2Done()}},1000);
+  $('a2-left').textContent=60;$('a2-timer').style.width='100%';
+}
+function a2Show(){const it=A2.items[A2.i];$('a2-factor').textContent=it[0];$('a2-count').textContent='Card '+(A2.i+1)+' of '+A2.items.length;$('a2-score').textContent=A2.score;$('a2-streak').textContent=A2.streak}
+function a2Pick(k){
+  const it=A2.items[A2.i];const correct=A2.round===1?(it[1]==='M'?0:1):it[1];const ok=k===correct;
+  if(ok){A2.streak++;A2.score+=A2.streak>=3?20:10}else{A2.streak=0;A2.score-=5;A2.missed.push({f:it[0],ans:A2.round===1?(correct===0?'Modifiable':'Non-modifiable'):BINS2[correct],why:it[2]})}
+  const fb=$('a2-fb');fb.hidden=false;fb.className=ok?'fb':'fb no';fb.innerHTML='<b>'+(ok?'Correct.':'Not quite: '+(A2.round===1?(correct===0?'Modifiable':'Non-modifiable'):BINS2[correct])+'.')+'</b> '+it[2];
+  A2.i++;if(A2.i>=A2.items.length){stopA2();setTimeout(a2Done,900);[...$('a2-bins').children].forEach(b=>b.disabled=true);$('a2-score').textContent=A2.score;return}
+  a2Show();
+}
+function a2Done(){
+  $('a2-game').hidden=true;$('a2-fb').hidden=true;
+  if(A2.round===1){A2.r1=A2.score;$('a2-r1').textContent=A2.score+' points';$('a2-mid').hidden=false}
+  else{$('a2-end').hidden=false;$('a2-final').textContent=A2.score+' points';
+    const m=$('a2-missed');m.innerHTML='';
+    if(!A2.missed.length){m.innerHTML='<p>None. Every card sorted correctly.</p>'}
+    else{const ul=document.createElement('ul');A2.missed.forEach(x=>{const li=document.createElement('li');li.innerHTML='<b>'+x.f+'</b> → '+x.ans+'. '+x.why;ul.appendChild(li)});m.appendChild(ul)}
+  }
+}
+$('a2-start').onclick=()=>{A2={score:0,missed:[]};a2Round(1)};
+$('a2-start2').onclick=()=>a2Round(2);
+$('a2-again').onclick=()=>{A2={score:0,missed:[]};a2Round(1)};
+$('a2-copy').onclick=()=>copyText($('a2-copy'),$('a2-sum'));
+
+/* ---------- ACTIVITY 3 ---------- */
+const TARGET={na:575,sfa:5.5,sug:12.5,fib:5};
+const PRODUCTS=[
+ {id:'noodle',name:'Instant curry noodles',desc:'1 pack (80 g) with seasoning. Fried noodle block, salty seasoning.',na:1400,sfa:7.5,sug:3,fib:1.5,saltShare:.9,fatShare:.9,sugShare:.8},
+ {id:'nugget',name:'Chicken nuggets',desc:'6 pieces (100 g). Batter-coated, par-fried.',na:720,sfa:4.2,sug:1.5,fib:0.8,saltShare:.75,fatShare:.7,sugShare:.8},
+ {id:'malt',name:'Chocolate malt drink',desc:'1 carton (250 ml), ready to drink.',na:160,sfa:2.5,sug:24,fib:0.6,saltShare:.4,fatShare:.6,sugShare:.95},
+ {id:'cookie',name:'Butter cookies',desc:'4 pieces (50 g). Made with butter and palm shortening.',na:190,sfa:9.5,sug:18,fib:0.6,saltShare:.6,fatShare:.95,sugShare:.95}
+];
+let P=PRODUCTS[0];
+function lab(){
+  const s=+$('lv-salt').value,f=+$('lv-fat').value,g=+$('lv-sugar').value,fi=+$('lv-fibre').value;
+  const ts=$('t-salt').checked,tf=$('t-fat').checked,tg=$('t-sugar').checked;
+  const used=[ts,tf,tg].filter(Boolean).length;
+  $('a3-budget').textContent=used+' of 2 used';
+  ['t-salt','t-fat','t-sugar'].forEach(id=>{const el=$(id);el.disabled=!el.checked&&used>=2});
+  $('o-salt').textContent=s+'%';$('o-fat').textContent=f+'%';$('o-sugar').textContent=g+'%';$('o-fibre').textContent=fi+' g';
+  const na=P.na*(1-P.saltShare*s/100)*(ts?0.85:1);
+  const sfa=P.sfa*(1-P.fatShare*0.8*f/100);
+  const sug=P.sug*(1-P.sugShare*g/100);
+  const fib=P.fib+fi+(tg?1.5:0);
+  // acceptance penalties
+  let acc=100,why=[];
+  const sT=ts?45:25; if(s>sT){acc-= (s-sT)*1.6; why.push('Too little salt: flat taste'+(ts?'':' (a salt replacer would help)'))}
+  const fT=tf?90:40; if(f>fT){acc-=(f-fT)*0.6; why.push('Liquid oil softens texture'+(tf?'':' (fat structuring would help)'))}
+  const gT=tg?55:20; if(g>gT){acc-=(g-gT)*1.5; why.push('Less sweet and less body'+(tg?'':' (stevia + polydextrose would help)'))}
+  if(fi>4){acc-=(fi-4)*6; why.push('Gritty or thick from too much added fibre')}
+  if(ts&&s<10)why.push('Salt replacer bought but salt barely cut');
+  acc=Math.max(0,Math.round(acc));
+  const rows=[['Sodium',na,TARGET.na,'mg','≤',na<=TARGET.na],['Saturated fat',sfa,TARGET.sfa,'g','≤',sfa<=TARGET.sfa],['Free sugars',sug,TARGET.sug,'g','≤',sug<=TARGET.sug],['Dietary fibre',fib,TARGET.fib,'g','≥',fib>=TARGET.fib]];
+  $('a3-table').innerHTML=rows.map(r=>'<tr><td>'+r[0]+'</td><td>'+(r[3]==='mg'?Math.round(r[1]):r[1].toFixed(1))+' '+r[3]+'</td><td>'+r[4]+' '+r[2]+' '+r[3]+'</td><td class="'+(r[5]?'ok">✔ met':'no">✘ not yet')+'</td></tr>').join('');
+  const met=rows.filter(r=>r[5]).length;
+  $('a3-acc').textContent=acc;$('a3-accbar').style.width=acc+'%';$('a3-accbar').style.background=acc>=70?'var(--ok)':'var(--bad)';
+  $('a3-accwhy').textContent=why.length?why.join('. ')+'.':'Taste and texture close to the original.';
+  const pass=met===4&&acc>=70;
+  const st=$('a3-status');st.className='pill '+(pass?'ok':'no');st.textContent=pass?'Ready to launch':met+' of 4 targets met · acceptance '+(acc>=70?'OK':'too low');
+  const stars=met+(acc>=70?1:0);
+  $('a3-verdict').innerHTML=pass?'<b>Launch approved.</b> 5 of 5 stars. Write your summary below, then try another product.':'<b>Rating:</b> '+'★'.repeat(stars)+'☆'.repeat(5-stars)+' ('+stars+' of 5). Keep adjusting.';
+  const techs=[ts&&'salt replacer (KCl + yeast extract)',tf&&'oleogel',tg&&'stevia + polydextrose'].filter(Boolean).join(' and ')||'no technology';
+  const sum=$('a3-sum');
+  if(!sum.dataset.edited){sum.value='Product: '+P.name+'\nChanges: cut salt '+s+'%, replaced '+f+'% of saturated fat, cut sugar '+g+'%, added '+fi+' g fibre, using '+techs+'.\nResult per serving: sodium '+Math.round(na)+' mg, saturated fat '+sfa.toFixed(1)+' g, free sugars '+sug.toFixed(1)+' g, fibre '+fib.toFixed(1)+' g; acceptance '+acc+'.\nLink to RNI 2017 and chronic disease: (explain which change lowers the risk of hypertension, CVD, type 2 diabetes or cancer, and why)';}
+}
+function pickProduct(p){P=p;['lv-salt','lv-fat','lv-sugar','lv-fibre'].forEach(id=>$(id).value=0);['t-salt','t-fat','t-sugar'].forEach(id=>$(id).checked=false);$('a3-sum').dataset.edited='';
+  [...$('a3-products').children].forEach(b=>b.setAttribute('aria-pressed',b.dataset.id===p.id?'true':'false'));
+  $('a3-name').textContent=p.name;$('a3-desc').textContent=p.desc;lab()}
+PRODUCTS.forEach(p=>{const b=document.createElement('button');b.dataset.id=p.id;b.id='prod-'+p.id;b.textContent=p.name;b.onclick=()=>pickProduct(p);$('a3-products').appendChild(b)});
+['lv-salt','lv-fat','lv-sugar','lv-fibre','t-salt','t-fat','t-sugar'].forEach(id=>$(id).addEventListener('input',lab));
+$('a3-sum').addEventListener('input',e=>e.target.dataset.edited='1');
+$('a3-copy').onclick=()=>copyText($('a3-copy'),$('a3-sum'));
+pickProduct(PRODUCTS[0]);
+/* ---------- VIDEO GATING ---------- */
+let PROG={1:0,2:0,3:0};
+try{const r=JSON.parse(localStorage.getItem('cddl-video')||'{}');[1,2,3].forEach(n=>{if(r[n])PROG[n]=r[n]})}catch(e){}
+function saveProg(){try{localStorage.setItem('cddl-video',JSON.stringify(PROG))}catch(e){}}
+const DONE=n=>PROG[n]===1;
+function refreshGates(){
+  [1,2,3].forEach(n=>{
+    const avail=n===1||DONE(n-1);
+    if($('v'+n+'-prev'))$('v'+n+'-prev').hidden=avail;
+    $('v'+n+'-player').hidden=!avail;
+    $('a'+n+'-wrap').hidden=!DONE(n); $('a'+n+'-lock').hidden=DONE(n);
+    const pill=$('v'+n+'-pill'); pill.textContent=DONE(n)?'Watched ✔':(avail?'Not finished':'Locked'); pill.className='pill'+(DONE(n)?' ok':'');
+    const t=$('t'+n+'-pill'); t.textContent=DONE(n)?'Unlocked ✔':(avail?'Ready to watch':'Locked'); t.className='pill'+(DONE(n)?' ok':'');
+    const pct=DONE(n)?100:Math.round((PROG[n]||0)*100); $('v'+n+'-bar').style.width=pct+'%'; $('v'+n+'-txt').textContent=pct+'% watched';
+  });
+}
+function gate(n){
+  const v=$('vid'+n); let max=0;
+  v.addEventListener('loadedmetadata',()=>{ if(!DONE(n)&&PROG[n]>0){max=PROG[n]*v.duration;} });
+  v.addEventListener('timeupdate',()=>{
+    if(!v.seeking && v.currentTime>max && v.currentTime-max<3) max=v.currentTime;
+    if(!DONE(n)&&v.duration){PROG[n]=Math.max(PROG[n]||0,Math.min(0.99,max/v.duration));const pct=Math.round(PROG[n]*100);$('v'+n+'-bar').style.width=pct+'%';$('v'+n+'-txt').textContent=pct+'% watched';}
+  });
+  v.addEventListener('seeking',()=>{ if(!DONE(n) && v.currentTime>max+1){ v.currentTime=max; } });
+  v.addEventListener('ratechange',()=>{ if(v.playbackRate>1.5) v.playbackRate=1.5; });
+  v.addEventListener('pause',saveProg);
+  v.addEventListener('ended',()=>{ if(DONE(n)||max>=v.duration-3){PROG[n]=1;saveProg();refreshGates();$('a'+n+'-wrap').scrollIntoView({behavior:'smooth',block:'start'});} });
+}
+[1,2,3].forEach(gate); refreshGates();
+/* captions: VTT text served as .txt, added as a text track */
+function addCaptions(n){
+  const v=$('vid'+n); if(!v.addTextTrack||typeof VTTCue==='undefined')return;
+  fetch('video/section-'+n+'.txt').then(r=>r.ok?r.text():'').then(t=>{
+    if(!t)return; const tr=v.addTextTrack('captions','English','en'); tr.mode='showing';
+    const sec=x=>{const a=x.trim().split(':').map(Number);return a[0]*3600+a[1]*60+a[2]};
+    t.split(/\n\s*\n/).forEach(b=>{const L=b.trim().split('\n');const i=L.findIndex(l=>l.includes('-->'));if(i<0)return;const [a,c]=L[i].split('-->');try{tr.addCue(new VTTCue(sec(a),sec(c),L.slice(i+1).join('\n')))}catch(e){}});
+  }).catch(()=>{});
+}
+[1,2,3].forEach(addCaptions);
+
+
+/* ---------- SLIDES ---------- */
+const NS=39;let si=1;
+function showSlide(n){si=Math.min(NS,Math.max(1,n));const im=$('sl-img');im.src='slides/slide-'+String(si).padStart(2,'0')+'.jpg';im.alt='Slide '+si;$('sl-num').textContent=si+' / '+NS;$('sl-prev').disabled=si===1;$('sl-next').disabled=si===NS;}
+$('sl-prev').onclick=()=>showSlide(si-1);$('sl-next').onclick=()=>showSlide(si+1);$('sl-jump').onchange=e=>showSlide(+e.target.value);
+document.addEventListener('keydown',e=>{if($('v-slides').hidden)return;if(e.key==='ArrowRight')showSlide(si+1);if(e.key==='ArrowLeft')showSlide(si-1);});
+showSlide(1);
+
+route();
+})();
+</script>
+
+</body></html>
