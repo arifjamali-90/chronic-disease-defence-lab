@@ -1,0 +1,337 @@
+WEBVTT
+
+00:00:00.700 --> 00:00:03.815
+Assalamualaikum warahmatullahi wabarakatuh.
+
+00:00:04.165 --> 00:00:04.997
+Welcome.
+
+00:00:05.347 --> 00:00:10.680
+This is the lecture on Nutrition and Chronic Diseases, for the Nutrition and Health course.
+
+00:00:11.030 --> 00:00:14.145
+The lecture is divided into three video sections.
+
+00:00:14.495 --> 00:00:21.215
+After each section, you will unlock a short game-style activity on the Chronic Disease Defence Lab website.
+
+00:00:21.565 --> 00:00:27.154
+In this first section, we look at the immune system, and how nutrition keeps our defences working.
+
+00:00:28.867 --> 00:00:31.107
+Here are the objectives of this lecture.
+
+00:00:31.457 --> 00:00:35.916
+We will introduce the body's defence systems and the nutrients that support them.
+
+00:00:36.266 --> 00:00:40.788
+We will explain the two-way relationship between malnutrition and infection.
+
+00:00:41.138 --> 00:00:52.274
+We will introduce the concept of risk factors for chronic diseases, and explain how diet affects cardiovascular disease, hypertension, type 2 diabetes and cancer.
+
+00:00:52.624 --> 00:01:04.464
+Finally, we will apply the Recommended Nutrient Intakes for Malaysia, or RNI 2017, together with food science strategies, to reduce the risk of chronic disease.
+
+00:01:06.167 --> 00:01:09.559
+By the end of this lecture, you should be able to do five things.
+
+00:01:09.909 --> 00:01:13.706
+First, describe how specific nutrients support immune defence.
+
+00:01:14.056 --> 00:01:18.323
+Second, explain how malnutrition and infection make each other worse.
+
+00:01:18.673 --> 00:01:24.326
+Third, classify chronic disease risk factors as modifiable or non-modifiable.
+
+00:01:24.676 --> 00:01:30.756
+Fourth, explain how dietary fats, sodium, sugars and fibre affect chronic disease risk.
+
+00:01:31.106 --> 00:01:36.930
+And fifth, apply RNI 2017 targets to reformulate a food product.
+
+00:01:37.280 --> 00:01:41.568
+Each activity on the website practises one or more of these outcomes.
+
+00:01:43.300 --> 00:01:45.476
+Why does this topic matter in Malaysia?
+
+00:01:45.826 --> 00:02:01.399
+The National Health and Morbidity Survey 2023 shows that fifteen point six percent of Malaysian adults have diabetes, twenty nine point two percent have hypertension, and thirty three point three percent have high blood cholesterol.
+
+00:02:01.749 --> 00:02:07.403
+More than half of adults are overweight or obese, and more than half have abdominal obesity.
+
+00:02:07.753 --> 00:02:09.395
+Two more findings stand out.
+
+00:02:09.745 --> 00:02:15.697
+Five point nine percent of adults had raised blood glucose but did not know they had diabetes.
+
+00:02:16.047 --> 00:02:22.127
+And ninety five point one percent of adults ate fewer than five servings of fruit and vegetables a day.
+
+00:02:22.477 --> 00:02:28.237
+These diseases share many of the same dietary risk factors, which is the theme of this lecture.
+
+00:02:29.967 --> 00:02:32.634
+Diseases can be grouped into two broad types.
+
+00:02:32.984 --> 00:02:41.218
+Infectious diseases are caused by pathogens, such as bacteria, viruses and parasites, and they spread from person to person.
+
+00:02:41.568 --> 00:02:44.918
+Nutrition affects how well our immune system resists them.
+
+00:02:45.268 --> 00:02:54.078
+Chronic diseases, such as cardiovascular disease, hypertension, type 2 diabetes and cancer, develop slowly over many years.
+
+00:02:54.428 --> 00:02:55.964
+They have no single cause.
+
+00:02:56.314 --> 00:03:00.986
+They result from a mix of genes, environment and lifestyle, including diet.
+
+00:03:01.336 --> 00:03:02.680
+Here is the key idea.
+
+00:03:03.030 --> 00:03:05.782
+Diet does not cause chronic disease on its own.
+
+00:03:06.132 --> 00:03:10.378
+But it is one of the few risk factors we can change, every single day.
+
+00:03:12.100 --> 00:03:14.596
+Let us begin Part A, the immune system.
+
+00:03:16.300 --> 00:03:18.497
+The body defends itself in three lines.
+
+00:03:18.847 --> 00:03:20.575
+The first line is the barriers.
+
+00:03:20.925 --> 00:03:26.387
+Skin and the mucous membranes of the gut, lungs and urinary tract block pathogens.
+
+00:03:26.737 --> 00:03:30.342
+Mucus, stomach acid and enzymes trap or destroy them.
+
+00:03:30.692 --> 00:03:33.103
+The second line is the innate response.
+
+00:03:33.453 --> 00:03:37.826
+Phagocytes, such as neutrophils and macrophages, engulf invaders.
+
+00:03:38.176 --> 00:03:41.653
+This causes inflammation, with redness, heat and swelling.
+
+00:03:42.003 --> 00:03:43.838
+It is fast, but not specific.
+
+00:03:44.188 --> 00:03:46.620
+The third line is the adaptive response.
+
+00:03:46.970 --> 00:03:48.463
+Lymphocytes take over.
+
+00:03:48.813 --> 00:03:52.781
+B cells make antibodies, and T cells kill infected cells.
+
+00:03:53.131 --> 00:03:58.123
+This response is slower, but it is specific, and it keeps a memory of the pathogen.
+
+00:03:58.473 --> 00:04:02.655
+Every line of defence depends on fast-dividing cells and proteins.
+
+00:04:03.005 --> 00:04:08.487
+So the immune system needs a steady supply of energy, protein, vitamins and minerals.
+
+00:04:10.200 --> 00:04:12.227
+Can diet strengthen the immune system?
+
+00:04:12.577 --> 00:04:19.553
+A well-balanced, nutrient-rich diet supports the body's defences, so it can fight infection more effectively.
+
+00:04:19.903 --> 00:04:23.231
+However, no single food or supplement boosts immunity.
+
+00:04:23.581 --> 00:04:28.850
+A deficiency weakens our defence, but taking more than we need does not make it stronger.
+
+00:04:29.200 --> 00:04:31.611
+Some excesses can even harm immunity.
+
+00:04:31.961 --> 00:04:43.289
+RNI 2017 notes that zinc intakes of one hundred to three hundred milligrams a day reduce immune function and lower HDL cholesterol.
+
+00:04:43.639 --> 00:04:49.249
+Diet also works together with sleep, physical activity, stress control and not smoking.
+
+00:04:49.599 --> 00:04:52.906
+So be sceptical of products labelled as immune boosters.
+
+00:04:53.256 --> 00:04:56.477
+Always ask: what is the dose, and what is the evidence?
+
+00:04:58.200 --> 00:05:02.659
+This table lists key nutrients for immunity, with Malaysian food sources.
+
+00:05:03.009 --> 00:05:05.675
+Protein builds antibodies and immune cells.
+
+00:05:06.025 --> 00:05:09.481
+Good sources are fish, chicken, eggs, tempeh and dhal.
+
+00:05:09.831 --> 00:05:13.373
+Vitamin A keeps the skin and mucous membranes intact.
+
+00:05:13.723 --> 00:05:16.581
+We find it in sweet potato, carrot and kangkung.
+
+00:05:16.931 --> 00:05:20.686
+Vitamin C is an antioxidant that supports phagocytes.
+
+00:05:21.036 --> 00:05:24.748
+Guava, or jambu batu, and papaya are excellent sources.
+
+00:05:25.098 --> 00:05:27.957
+Vitamin D regulates immune responses.
+
+00:05:28.307 --> 00:05:31.208
+We get it from sunlight, oily fish and egg yolk.
+
+00:05:31.558 --> 00:05:38.619
+Vitamin E protects cell membranes as an antioxidant, and is found in vegetable oils, nuts and seeds.
+
+00:05:38.969 --> 00:05:41.551
+Zinc develops and activates immune cells.
+
+00:05:41.901 --> 00:05:44.610
+Sources include meat, shellfish and legumes.
+
+00:05:44.960 --> 00:05:48.352
+And iron is needed by the enzymes that kill microbes.
+
+00:05:48.702 --> 00:05:51.411
+Red meat, liver and legumes provide iron.
+
+00:05:51.761 --> 00:06:02.535
+RNI 2017 explains that in vitamin A deficiency, the cells lining our protective surfaces flatten and dry out, and produce less mucus.
+
+00:06:02.885 --> 00:06:05.253
+This lowers our resistance to pathogens.
+
+00:06:06.967 --> 00:06:09.975
+Malnutrition and infection form a vicious cycle.
+
+00:06:10.325 --> 00:06:15.146
+It starts with a poor diet, low in protein, energy, vitamins and minerals.
+
+00:06:15.496 --> 00:06:16.968
+This weakens immunity.
+
+00:06:17.318 --> 00:06:21.777
+The barriers become thinner, and the body makes fewer T cells and antibodies.
+
+00:06:22.127 --> 00:06:25.903
+Infections then become more frequent, longer and more severe.
+
+00:06:26.253 --> 00:06:30.477
+Infection raises nutrient needs, because of fever and tissue repair.
+
+00:06:30.827 --> 00:06:36.992
+At the same time it lowers intake, through poor appetite, and reduces absorption, through diarrhoea.
+
+00:06:37.342 --> 00:06:40.692
+This makes malnutrition worse, and the cycle continues.
+
+00:06:41.042 --> 00:06:48.786
+Breaking the cycle needs both adequate nutrition and infection control, such as clean water, vaccination and breastfeeding.
+
+00:06:50.500 --> 00:06:53.807
+This table shows how malnutrition weakens each defence.
+
+00:06:54.157 --> 00:06:57.847
+The skin becomes thinner and more fragile, and wounds heal slowly.
+
+00:06:58.197 --> 00:07:04.448
+The mucous membranes produce less mucus, and the gut lining shrinks, so bacteria can cross into the blood.
+
+00:07:04.798 --> 00:07:10.217
+Lymphoid tissue, such as the thymus and lymph nodes, shrinks, and there are fewer T cells.
+
+00:07:10.567 --> 00:07:14.620
+Fewer antibodies are made, so the response to vaccines is weaker.
+
+00:07:14.970 --> 00:07:17.551
+And phagocytes kill bacteria less effectively.
+
+00:07:17.901 --> 00:07:27.395
+The groups most at risk are young children in poor households, older adults, hospitalised patients, and people with chronic illness or alcohol misuse.
+
+00:07:29.100 --> 00:07:32.023
+Inflammation can be a protector or a problem.
+
+00:07:32.373 --> 00:07:35.231
+Acute inflammation is short-term and helpful.
+
+00:07:35.581 --> 00:07:42.301
+White blood cells rush to the site, destroy the pathogens, and then the response switches off so the tissue can heal.
+
+00:07:42.651 --> 00:07:46.513
+Chronic inflammation is low-grade and lasts for months or years.
+
+00:07:46.863 --> 00:07:52.900
+White blood cells keep releasing oxidants and signalling molecules that damage healthy tissue.
+
+00:07:53.250 --> 00:07:55.277
+This is the link to chronic disease.
+
+00:07:55.627 --> 00:08:01.472
+Chronic inflammation helps drive atherosclerosis, type 2 diabetes and some cancers.
+
+00:08:01.822 --> 00:08:12.254
+Abdominal obesity, smoking and diets high in refined foods add to inflammation, while omega-3 fatty acids, fruits and vegetables help to limit it.
+
+00:08:13.967 --> 00:08:16.207
+The gut is a major immune organ.
+
+00:08:16.557 --> 00:08:19.885
+A large share of the body's immune tissue lines the gut.
+
+00:08:20.235 --> 00:08:22.944
+This is called gut-associated lymphoid tissue.
+
+00:08:23.294 --> 00:08:27.774
+Gut microbes train our immune cells and help to keep the gut barrier tight.
+
+00:08:28.124 --> 00:08:34.247
+Probiotics are live, beneficial microbes, found in foods such as yoghurt, kefir and tempeh.
+
+00:08:34.597 --> 00:08:41.658
+Prebiotics are fibres that feed these microbes, such as inulin, oligosaccharides and resistant starch.
+
+00:08:42.008 --> 00:08:48.515
+When gut bacteria ferment fibre, they produce short-chain fatty acids, which help reduce inflammation.
+
+00:08:48.865 --> 00:08:58.017
+For food biotechnologists, the challenges are choosing the right strains, keeping them alive through processing and storage, and proving any health claim.
+
+00:08:59.733 --> 00:09:01.546
+This is the end of Section 1.
+
+00:09:01.896 --> 00:09:05.203
+You can now continue to Activity 1, Defend the Body.
+
+00:09:05.553 --> 00:09:07.729
+Each question is a pathogen wave.
+
+00:09:08.079 --> 00:09:10.255
+Answer correctly to raise your shield.
+
+00:09:10.605 --> 00:09:13.784
+You have three shields and twenty five seconds per wave.
+
+00:09:14.134 --> 00:09:16.224
+Good luck, and see you in Section 2.

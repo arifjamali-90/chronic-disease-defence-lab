@@ -1,0 +1,172 @@
+WEBVTT
+
+00:00:00.700 --> 00:00:03.431
+Welcome to Section 3, the final section.
+
+00:00:03.781 --> 00:00:11.503
+Here we look at cancer, food processing, herbal supplements and nutritional genomics, and then we summarise the whole lecture.
+
+00:00:13.233 --> 00:00:14.705
+How does cancer develop?
+
+00:00:15.055 --> 00:00:19.748
+It starts with initiation, when a carcinogen damages the DNA of a cell.
+
+00:00:20.098 --> 00:00:23.618
+Normally the cell repairs the damage or destroys itself.
+
+00:00:23.968 --> 00:00:26.870
+If it fails to do so, the damaged cell survives.
+
+00:00:27.220 --> 00:00:29.886
+In promotion, the damaged cell multiplies.
+
+00:00:30.236 --> 00:00:34.503
+In progression, the tumour grows and may spread to other parts of the body.
+
+00:00:34.853 --> 00:00:36.773
+Diet can act at every stage.
+
+00:00:37.123 --> 00:00:40.408
+Some food factors promote damage, while others protect.
+
+00:00:40.758 --> 00:00:46.156
+Cancer prevention is about reducing risk over many years, not about any single food.
+
+00:00:47.867 --> 00:00:50.235
+Which diet factors affect cancer risk?
+
+00:00:50.585 --> 00:01:06.884
+Factors that raise risk include obesity and excess energy, heavy alcohol intake, red and processed meat, which is linked with colorectal cancer, salted, pickled and smoked foods, linked with stomach cancer, and meat charred at high temperatures.
+
+00:01:07.234 --> 00:01:22.530
+Factors that lower risk include fibre-rich whole grains and legumes, fruits and vegetables, which provide phytochemicals, folate and antioxidants, calcium-rich foods for colorectal cancer, physical activity, and a healthy body weight.
+
+00:01:22.880 --> 00:01:24.416
+Focus on whole foods.
+
+00:01:24.766 --> 00:01:29.011
+High-dose supplements have not shown the same protection, and some have caused harm.
+
+00:01:30.733 --> 00:01:35.256
+Food processing can form carcinogens, and food science can reduce them.
+
+00:01:35.606 --> 00:01:39.894
+Heterocyclic amines form when meat is cooked at high heat or charred.
+
+00:01:40.244 --> 00:01:43.806
+Use lower temperatures, marinate the meat, and avoid charring.
+
+00:01:44.156 --> 00:01:49.020
+Polycyclic aromatic hydrocarbons form during smoking and flame grilling.
+
+00:01:49.370 --> 00:01:52.378
+Avoid fat dripping onto flames, and trim the fat.
+
+00:01:52.728 --> 00:01:57.187
+N-nitroso compounds come from nitrite-cured meats and salted fish.
+
+00:01:57.537 --> 00:02:01.846
+Limit intake, and add vitamin C, or ascorbate, during processing.
+
+00:02:02.196 --> 00:02:08.724
+Acrylamide forms when starchy foods are fried or baked above one hundred and twenty degrees Celsius.
+
+00:02:09.074 --> 00:02:13.426
+The enzyme asparaginase and lower frying temperatures can reduce it.
+
+00:02:13.776 --> 00:02:16.912
+Food biotechnology offers real solutions.
+
+00:02:17.262 --> 00:02:23.982
+Enzymes, process control and reformulation reduce exposure, without removing the foods people enjoy.
+
+00:02:25.700 --> 00:02:29.391
+Many people with chronic diseases use herbs and supplements.
+
+00:02:29.741 --> 00:02:36.674
+Complementary and alternative medicine includes herbal products that are often marketed for chronic diseases.
+
+00:02:37.024 --> 00:02:41.141
+The evidence is often weak or mixed, and natural does not mean safe.
+
+00:02:41.491 --> 00:02:48.190
+The risks include mislabelling, contamination with heavy metals or drugs, and interactions with medicines.
+
+00:02:48.540 --> 00:02:54.407
+For example, ginkgo can interact with blood thinners, and St John's wort interacts with many drugs.
+
+00:02:54.757 --> 00:03:01.242
+In Malaysia, always check for a registration number from the National Pharmaceutical Regulatory Agency.
+
+00:03:01.592 --> 00:03:03.107
+And ask three questions.
+
+00:03:03.457 --> 00:03:04.971
+Who benefits from the claim?
+
+00:03:05.321 --> 00:03:06.409
+What is the dose?
+
+00:03:06.759 --> 00:03:08.317
+Was it tested in people?
+
+00:03:10.033 --> 00:03:13.574
+Finally, nutritional genomics, where diet meets genes.
+
+00:03:13.924 --> 00:03:21.775
+Nutrigenomics studies how food components change gene expression, for example, bioactive compounds in whole foods.
+
+00:03:22.125 --> 00:03:27.672
+Single nucleotide polymorphisms, or SNPs, are small variations in our DNA.
+
+00:03:28.022 --> 00:03:32.950
+They change how people respond to diet, but they do not directly cause disease.
+
+00:03:33.300 --> 00:03:38.100
+Epigenetics describes how methyl groups and histones switch genes on or off.
+
+00:03:38.450 --> 00:03:43.335
+Diet can alter these marks, and some effects may even pass across generations.
+
+00:03:43.685 --> 00:03:47.994
+Consumer genetic tests often promise more than the science can deliver.
+
+00:03:48.344 --> 00:03:56.259
+For now, the general advice of a varied, plant-rich diet, a healthy weight and regular activity applies to almost everyone.
+
+00:03:57.967 --> 00:03:59.674
+Let us summarise the lecture.
+
+00:04:00.024 --> 00:04:06.893
+Immunity: every line of defence needs adequate protein, vitamins A, C, D and E, zinc and iron.
+
+00:04:07.243 --> 00:04:10.016
+Meet the RNI, because more is not better.
+
+00:04:10.366 --> 00:04:15.998
+The vicious cycle: malnutrition weakens immunity, and infection worsens malnutrition.
+
+00:04:16.348 --> 00:04:22.364
+Inflammation: chronic, low-grade inflammation links the immune system to chronic disease.
+
+00:04:22.714 --> 00:04:31.162
+Risk factors: they are shared across cardiovascular disease, hypertension, diabetes and cancer, and diet is modifiable.
+
+00:04:31.512 --> 00:04:49.112
+RNI 2017: saturated fat below ten percent of energy, free sugars at ten percent or less, fibre twenty to thirty grams a day, and sodium with an Adequate Intake of fifteen hundred milligrams and an upper level of twenty three hundred milligrams a day.
+
+00:04:49.462 --> 00:04:55.436
+Food science: reformulation and processing control can lower risk for whole populations.
+
+00:04:57.167 --> 00:05:00.730
+This is the end of Section 3, and the end of the video lecture.
+
+00:05:01.080 --> 00:05:04.898
+You can now continue to Activity 3, the Reformulation Lab.
+
+00:05:05.248 --> 00:05:15.915
+As the research and development team, cut the sodium, saturated fat and sugar in a product, add fibre, and keep consumers happy, using only two technologies.
+
+00:05:16.265 --> 00:05:18.526
+Thank you for watching, and all the best.

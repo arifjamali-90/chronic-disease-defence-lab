@@ -1,0 +1,331 @@
+WEBVTT
+
+00:00:00.700 --> 00:00:02.236
+Welcome to Section 2.
+
+00:00:02.586 --> 00:00:05.594
+We now move to Part B, nutrition and diseases.
+
+00:00:05.944 --> 00:00:12.536
+In this section, we look at risk factors, cardiovascular disease, hypertension, and type 2 diabetes.
+
+00:00:14.267 --> 00:00:15.611
+What is a risk factor?
+
+00:00:15.961 --> 00:00:22.041
+A risk factor is a condition or behaviour that is linked with a higher chance of developing a disease.
+
+00:00:22.391 --> 00:00:25.506
+Risk factors show correlation, not proof of cause.
+
+00:00:25.856 --> 00:00:29.824
+A risk factor raises the odds, but it does not guarantee disease.
+
+00:00:30.174 --> 00:00:33.587
+And the more risk factors a person has, the higher the risk.
+
+00:00:33.937 --> 00:00:37.628
+Risk factors are either non-modifiable or modifiable.
+
+00:00:37.978 --> 00:00:41.114
+Non-modifiable risk factors cannot be changed.
+
+00:00:41.464 --> 00:00:46.072
+They include age, sex, family history, genetic make-up and ethnicity.
+
+00:00:46.422 --> 00:00:48.918
+Modifiable risk factors can be changed.
+
+00:00:49.268 --> 00:00:55.646
+They include diet, physical activity, smoking, alcohol, body weight, blood pressure and blood lipids.
+
+00:00:57.367 --> 00:01:00.567
+Many risk factors are shared across chronic diseases.
+
+00:01:00.917 --> 00:01:07.914
+A diet high in saturated and trans fat raises the risk of cardiovascular disease and some cancers.
+
+00:01:08.264 --> 00:01:14.686
+A high salt intake raises the risk of cardiovascular disease, hypertension, and stomach cancer.
+
+00:01:15.036 --> 00:01:25.532
+Low intakes of fruit, vegetables and fibre, excess energy and obesity, physical inactivity and smoking raise the risk of almost all of these diseases.
+
+00:01:25.882 --> 00:01:31.450
+Heavy alcohol intake is linked with cardiovascular disease, hypertension and cancer.
+
+00:01:31.800 --> 00:01:33.165
+The good news is this.
+
+00:01:33.515 --> 00:01:40.256
+One healthy change, such as cutting salt or being more active, lowers the risk of several diseases at once.
+
+00:01:41.967 --> 00:01:44.655
+Chronic diseases are also linked to each other.
+
+00:01:45.005 --> 00:01:53.048
+A poor diet and physical inactivity lead to obesity, especially abdominal obesity, and to insulin resistance.
+
+00:01:53.398 --> 00:01:55.275
+Obesity raises blood pressure.
+
+00:01:55.625 --> 00:02:05.204
+Insulin resistance leads to type 2 diabetes, speeds up atherosclerosis and cardiovascular disease, and is linked with some cancers.
+
+00:02:05.554 --> 00:02:15.346
+When abdominal obesity, high blood pressure, high blood glucose, high triglycerides and low HDL occur together, we call it the metabolic syndrome.
+
+00:02:15.696 --> 00:02:19.770
+It greatly increases the risk of both heart disease and diabetes.
+
+00:02:21.500 --> 00:02:27.537
+Cardiovascular disease often begins with atherosclerosis, or hardening of the arteries.
+
+00:02:27.887 --> 00:02:35.930
+First, the artery lining is damaged, for example by high LDL, high blood pressure, smoking or high blood glucose.
+
+00:02:36.280 --> 00:02:41.229
+LDL cholesterol then enters the artery wall and becomes oxidised.
+
+00:02:41.579 --> 00:02:47.787
+Macrophages engulf the oxidised LDL and become foam cells, which triggers inflammation.
+
+00:02:48.137 --> 00:02:51.871
+The plaque grows and hardens with calcium, and the artery narrows.
+
+00:02:52.221 --> 00:02:53.543
+The plaque may rupture.
+
+00:02:53.893 --> 00:02:57.115
+A ruptured plaque triggers a blood clot, called a thrombus.
+
+00:02:57.465 --> 00:02:59.875
+A clot that travels is called an embolus.
+
+00:03:00.225 --> 00:03:04.065
+If a coronary artery is blocked, the result is a heart attack.
+
+00:03:04.415 --> 00:03:07.829
+If an artery to the brain is blocked, the result is a stroke.
+
+00:03:08.179 --> 00:03:11.848
+And when a weakened artery wall bulges, it is called an aneurysm.
+
+00:03:13.567 --> 00:03:16.788
+Two lipoproteins are central to heart disease risk.
+
+00:03:17.138 --> 00:03:22.002
+LDL, often called bad cholesterol, carries cholesterol to the tissues.
+
+00:03:22.352 --> 00:03:27.728
+The higher the LDL, the higher the risk, especially when LDL is oxidised.
+
+00:03:28.078 --> 00:03:34.116
+HDL, often called good cholesterol, carries cholesterol back to the liver for disposal.
+
+00:03:34.466 --> 00:03:36.599
+A higher HDL lowers risk.
+
+00:03:36.949 --> 00:03:40.341
+The table shows desirable blood lipid levels for adults.
+
+00:03:40.691 --> 00:03:44.744
+Total cholesterol should be below five point two millimoles per litre.
+
+00:03:45.094 --> 00:03:47.356
+LDL should be below two point six.
+
+00:03:47.706 --> 00:03:53.466
+HDL should be at least one point six, and a level below one point zero raises risk.
+
+00:03:53.816 --> 00:03:58.082
+Fasting triglycerides should be below one point seven millimoles per litre.
+
+00:03:59.800 --> 00:04:04.301
+What does RNI 2017 recommend for dietary fat?
+
+00:04:04.651 --> 00:04:09.217
+Total fat should provide twenty five to thirty percent of total energy intake.
+
+00:04:09.567 --> 00:04:14.324
+Saturated fatty acids should be less than ten percent of total energy intake.
+
+00:04:14.674 --> 00:04:19.047
+Monounsaturated fatty acids should provide twelve to fifteen percent.
+
+00:04:19.397 --> 00:04:31.387
+Omega-6 polyunsaturated fatty acids should provide three to seven percent, and omega-3 polyunsaturated fatty acids zero point three to one point two percent.
+
+00:04:31.737 --> 00:04:35.065
+Trans fatty acids should be kept as low as practical.
+
+00:04:35.415 --> 00:04:41.580
+RNI 2017 sets no limit for dietary cholesterol in healthy people.
+
+00:04:41.930 --> 00:04:48.671
+However, it cautions that cholesterol-rich foods, such as beef and shellfish, also carry saturated fat.
+
+00:04:49.021 --> 00:04:50.323
+Here is a quick check.
+
+00:04:50.673 --> 00:04:56.113
+On a two thousand kilocalorie diet, ten percent of energy is two hundred kilocalories.
+
+00:04:56.463 --> 00:05:01.049
+Divide by nine, and you get about twenty two grams of saturated fat a day.
+
+00:05:02.767 --> 00:05:05.391
+How can we eat to reduce cardiovascular risk?
+
+00:05:05.741 --> 00:05:10.392
+Replace saturated and trans fats with unsaturated oils, nuts and fish.
+
+00:05:10.742 --> 00:05:13.984
+Eat oily fish, such as ikan kembung and sardines.
+
+00:05:14.334 --> 00:05:18.324
+Their omega-3 fats lower triglycerides and inflammation.
+
+00:05:18.674 --> 00:05:22.834
+Eat more plant foods: fruits, vegetables, whole grains and legumes.
+
+00:05:23.184 --> 00:05:29.093
+RNI 2017 recommends twenty to thirty grams of dietary fibre a day.
+
+00:05:29.443 --> 00:05:35.139
+Limit free sugars to ten percent of total energy intake or less, and limit refined starch.
+
+00:05:35.489 --> 00:05:40.630
+Move more, because regular activity raises HDL and lowers blood pressure.
+
+00:05:40.980 --> 00:05:42.559
+And avoid tobacco smoke.
+
+00:05:44.267 --> 00:05:47.040
+Now, a food science angle on healthier fats.
+
+00:05:47.390 --> 00:05:50.974
+Trans fats form during the partial hydrogenation of oils.
+
+00:05:51.324 --> 00:05:58.151
+Industry alternatives include interesterification, fully hydrogenated fat blends, and palm fractions.
+
+00:05:58.501 --> 00:06:00.336
+Oleogels are another option.
+
+00:06:00.686 --> 00:06:08.259
+They structure liquid oil with waxes or ethylcellulose, so it behaves like solid fat in bakery products and spreads.
+
+00:06:08.609 --> 00:06:17.036
+Blending oils raises the content of monounsaturated and polyunsaturated fats, while keeping texture and frying stability.
+
+00:06:17.386 --> 00:06:21.759
+But every change must be checked for taste, texture, shelf life, and cost.
+
+00:06:22.109 --> 00:06:23.154
+Think about it.
+
+00:06:23.504 --> 00:06:27.067
+Which local products would benefit most from fat reformulation?
+
+00:06:28.767 --> 00:06:31.732
+Hypertension is often called the silent disease.
+
+00:06:32.082 --> 00:06:37.309
+Twenty nine point two percent of Malaysian adults have hypertension, and many do not know it.
+
+00:06:37.659 --> 00:06:42.011
+There are no symptoms you can feel, so blood pressure must be measured regularly.
+
+00:06:42.361 --> 00:06:46.500
+Blood pressure depends on cardiac output and peripheral resistance.
+
+00:06:46.850 --> 00:06:52.162
+It is written as two numbers: systolic over diastolic, in millimetres of mercury.
+
+00:06:52.512 --> 00:06:56.160
+A normal reading is below one hundred and twenty over eighty.
+
+00:06:56.510 --> 00:07:01.416
+Hypertension is a reading of one hundred and forty over ninety or higher.
+
+00:07:01.766 --> 00:07:09.510
+Hypertension and atherosclerosis worsen each other, and both raise the risk of stroke, heart attack and kidney failure.
+
+00:07:11.233 --> 00:07:14.881
+What does RNI 2017 say about sodium?
+
+00:07:15.231 --> 00:07:24.810
+For adults, the Adequate Intake for sodium is fifteen hundred milligrams a day, and the Tolerable Upper Intake Level is twenty three hundred milligrams a day.
+
+00:07:25.160 --> 00:07:30.365
+One teaspoon, or five grams of salt, provides two thousand milligrams of sodium.
+
+00:07:30.715 --> 00:07:42.086
+The MySalt 2015 study measured sodium in twenty four hour urine, and found that Malaysian adults consumed about twenty eight hundred and sixty milligrams of sodium a day.
+
+00:07:42.436 --> 00:07:44.185
+That is above the upper level.
+
+00:07:44.535 --> 00:07:50.530
+Cutting sodium lowers both systolic and diastolic blood pressure, in adults and in children.
+
+00:07:50.880 --> 00:07:57.109
+Reducing intake to below two grams a day gives greater benefit than cuts that stay above two grams.
+
+00:07:57.459 --> 00:08:06.931
+High salt intake is also linked with stomach cancer, with a sixty eight percent higher risk, and about eight percent more risk for every gram of salt a day.
+
+00:08:08.633 --> 00:08:15.780
+The DASH eating plan, which stands for Dietary Approaches to Stop Hypertension, is proven to lower blood pressure.
+
+00:08:16.130 --> 00:08:26.306
+It is rich in fruits, vegetables, low-fat dairy, whole grains, fish, poultry, nuts and legumes, and low in sodium, saturated fat and added sugars.
+
+00:08:26.656 --> 00:08:30.112
+It supplies potassium, calcium, magnesium and fibre.
+
+00:08:30.462 --> 00:08:38.419
+RNI 2017 sets the Adequate Intake for potassium at four point seven grams a day for adults.
+
+00:08:38.769 --> 00:08:48.156
+Other lifestyle steps add to the benefit: reduce sodium, lose excess weight, be physically active, limit or avoid alcohol, and do not smoke.
+
+00:08:49.867 --> 00:08:52.640
+Finally in this section, type 2 diabetes.
+
+00:08:52.990 --> 00:08:59.476
+Fifteen point six percent of Malaysian adults have diabetes, and five point nine percent did not know it.
+
+00:08:59.826 --> 00:09:02.258
+The main defect is insulin resistance.
+
+00:09:02.608 --> 00:09:06.746
+The cells respond poorly to insulin, so blood glucose stays high.
+
+00:09:07.096 --> 00:09:12.174
+The biggest modifiable driver is excess body fat, especially around the waist.
+
+00:09:12.524 --> 00:09:17.942
+And diabetes is itself an independent risk factor for cardiovascular disease.
+
+00:09:18.292 --> 00:09:35.743
+Diet strategies include keeping a healthy weight, choosing whole grains and fibre, limiting free sugars to ten percent of energy or less, especially sugary drinks, getting fifty to sixty five percent of energy from carbohydrate spread over the day, and being active most days.
+
+00:09:37.467 --> 00:09:39.238
+This is the end of Section 2.
+
+00:09:39.588 --> 00:09:43.001
+You can now continue to Activity 2, Risk Factor Rush.
+
+00:09:43.351 --> 00:09:47.980
+In Round 1, sort risk factors into modifiable or non-modifiable.
+
+00:09:48.330 --> 00:09:54.005
+In Round 2, match each dietary factor to the chronic disease it is most strongly linked with.
+
+00:09:54.355 --> 00:09:56.190
+You have sixty seconds per round.
+
+00:09:56.540 --> 00:09:58.033
+See you in Section 3.
