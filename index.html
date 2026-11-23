@@ -175,8 +175,9 @@ video{width:100%;max-width:100%;aspect-ratio:16/9;background:#000;border-radius:
       <p class="small">Check code</p>
       <p class="code" id="so-code"></p>
     </div>
-    <div class="note"><b>Next step:</b> take a screenshot of the slip above (name, matric number and check code must be visible) and submit it as your lecturer instructs, for example in GOALS. Keep the screenshot until attendance is confirmed.</div>
-    <div class="row"><button class="ghost" id="slip-edit">Correct my name or matric number</button></div>
+    <p class="fb" id="slip-sent" role="status" hidden></p>
+    <div class="note"><b>Your attendance is sent to your lecturer automatically</b> when you get your slip. As a backup, take a screenshot of the slip above (name, matric number and check code visible) and keep it until attendance is confirmed.</div>
+    <div class="row"><button class="ghost" id="slip-resend">Send my attendance again</button><button class="ghost" id="slip-edit">Correct my name or matric number</button></div>
   </div>
 </section>
 
@@ -608,6 +609,19 @@ showSlide(1);
 
 /* ---------- ATTENDANCE SLIP ---------- */
 const SLIP_SALT='CDDL-A261-NCD';
+const FORM='https://docs.google.com/forms/d/e/1FAIpQLSe_QN_tdkl057ritcDh74I8GA4tQzldP82Kfm7K5eTzP1X1NQ/';
+const FE={name:'entry.2053145194',matric:'entry.310194800',date:'entry.1723129530',a1:'entry.2139615112',a2:'entry.1290085617',a3:'entry.543445105',code:'entry.521350923'};
+function formParams(d){const q=new URLSearchParams();q.set(FE.name,normName(d.name));q.set(FE.matric,normMat(d.matric));q.set(FE.date,d.date);q.set(FE.a1,String(d.a1));q.set(FE.a2,String(d.a2));q.set(FE.a3,String(d.a3));q.set(FE.code,d.code);return q}
+async function sendAttendance(d){
+  const el=$('slip-sent');el.hidden=false;el.className='fb';el.textContent='Sending your attendance…';
+  try{await fetch(FORM+'formResponse',{method:'POST',mode:'no-cors',body:formParams(d)});
+    d.sent=new Date().toISOString();try{localStorage.setItem('cddl-slip',JSON.stringify(d))}catch(e){}
+    el.className='fb';el.innerHTML='<b>Attendance sent ✔</b> Your lecturer has received your name, matric number and check code.';
+  }catch(e){
+    el.className='fb no';const url=FORM+'viewform?usp=pp_url&'+formParams(d).toString();
+    el.innerHTML='<b>Could not send automatically.</b> Check your internet connection and press "Send my attendance again", or <a target="_blank" rel="noopener" href="'+url+'">open the attendance form</a> (already filled in) and press Submit.';
+  }
+}
 let DONEA={};
 try{DONEA=JSON.parse(localStorage.getItem('cddl-done')||'{}')}catch(e){}
 function saveDone(){try{localStorage.setItem('cddl-done',JSON.stringify(DONEA))}catch(e){}}
@@ -633,7 +647,7 @@ function slipRefresh(){
   const pill=$('t4-pill');if(pill){pill.textContent=saved?'Slip ready ✔':(ready?'Ready to collect':'Locked');pill.className='pill'+((saved||ready)?' ok':'');}
   if(!$('slip-form'))return;
   $('slip-form').hidden=!ready||!!saved; $('slip-out').hidden=!saved;
-  if(saved)showSlip(saved);
+  if(saved){showSlip(saved);const el=$('slip-sent');if(saved.sent&&el.hidden){el.hidden=false;el.className='fb';el.innerHTML='<b>Attendance sent ✔</b> You can close this page.';}}
 }
 function showSlip(d){
   $('so-name').textContent=normName(d.name);$('so-matric').textContent=normMat(d.matric);$('so-date').textContent=d.date;
@@ -652,7 +666,9 @@ $('slip-make').onclick=async()=>{
   const d={name,matric,date,a1,a2,a3,code};
   try{localStorage.setItem('cddl-slip',JSON.stringify(d))}catch(e){}
   slipRefresh();$('slip-card').scrollIntoView({behavior:'smooth',block:'start'});
+  sendAttendance(d);
 };
+$('slip-resend').onclick=()=>{let d=null;try{d=JSON.parse(localStorage.getItem('cddl-slip')||'null')}catch(e){}if(d)sendAttendance(d)};
 $('slip-edit').onclick=()=>{let d=null;try{d=JSON.parse(localStorage.getItem('cddl-slip')||'null')}catch(e){}
   try{localStorage.removeItem('cddl-slip')}catch(e){}
   if(d){$('slip-name').value=d.name;$('slip-matric').value=d.matric}slipRefresh();};

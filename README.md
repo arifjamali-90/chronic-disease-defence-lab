@@ -16,9 +16,9 @@ Each video must be watched to the end to unlock its activity, and captions are a
 
 ## Attendance
 
-When a student has watched all three videos and finished all three activities, the **Attendance slip** page unlocks. The student enters their name and matric number and gets a slip with a check code, then submits a screenshot (for example in GOALS).
+When a student has watched all three videos and finished all three activities, the **Attendance slip** page unlocks. The student enters their name and matric number and gets a slip with a check code. The lab sends the name, matric number, completion time, scores and check code automatically to the lecturer's Google Form ("Chronic Disease Defence Lab - Attendance"), so the attendance list builds itself in the form's Responses tab, which can be opened as a Google Sheet. Students also keep a screenshot of the slip as a backup.
 
-To check a slip, open **https://arifjamali-90.github.io/chronic-disease-defence-lab/verify.html**, type in the details from the screenshot and press *Check slip*. A match means the slip came from the lab page and was not edited.
+To check a slip, open **https://arifjamali-90.github.io/chronic-disease-defence-lab/verify.html**, type in the details from a response or screenshot and press *Check slip*. A match means the slip came from the lab page and was not edited.
 
 Video progress is saved in the student's browser only, so students should use the same device and browser throughout. Group summaries are copied into the course's GOALS forum.
 
