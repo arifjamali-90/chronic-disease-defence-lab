@@ -14,6 +14,12 @@ The lecture covers the immune system and nutrition, then risk factors, cardiovas
 
 Each video must be watched to the end to unlock its activity, and captions are available. The 39 lecture slides and a summary with self-check questions are always open. The slides can also be downloaded as a PDF.
 
+## Attendance
+
+When a student has watched all three videos and finished all three activities, the **Attendance slip** page unlocks. The student enters their name and matric number and gets a slip with a check code, then submits a screenshot (for example in GOALS).
+
+To check a slip, open **https://arifjamali-90.github.io/chronic-disease-defence-lab/verify.html**, type in the details from the screenshot and press *Check slip*. A match means the slip came from the lab page and was not edited.
+
 Video progress is saved in the student's browser only, so students should use the same device and browser throughout. Group summaries are copied into the course's GOALS forum.
 
 ## Credits
@@ -24,5 +30,6 @@ Hosted on GitHub Pages by Dr. Muhamad Arif Mohamad Jamali.
 ## Files
 
 - `index.html`: the lab website
+- `verify.html`: attendance slip checker for the lecturer
 - `slides/`: lecture slides as images, plus `Nutrition_and_Chronic_Diseases_slides.pdf`
 - `video/`: the three lecture videos with captions and cover images

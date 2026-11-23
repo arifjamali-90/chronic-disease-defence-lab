@@ -89,6 +89,14 @@ video{width:100%;max-width:100%;aspect-ratio:16/9;background:#000;border-radius:
 .vprog{display:flex;gap:12px;align-items:center}
 .lockmsg{padding:12px 14px;border:2px dashed var(--line);border-radius:10px;font-weight:bold}
 .tile .pill{align-self:flex-start}
+/* attendance slip */
+.slip{border:3px solid var(--accent);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:10px;background:var(--bg)}
+.slip .code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:30px;letter-spacing:3px;font-weight:bold;color:var(--accent)}
+.slip dl{display:grid;grid-template-columns:max-content 1fr;gap:6px 14px;margin:0}
+.slip dt{color:var(--muted);font-size:14px} .slip dd{margin:0;font-weight:bold}
+.field{display:flex;flex-direction:column;gap:4px}
+.field input{font:inherit;padding:10px;border-radius:10px;border:2px solid var(--line);background:var(--bg);color:var(--ink)}
+.checks{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 
@@ -111,6 +119,7 @@ video{width:100%;max-width:100%;aspect-ratio:16/9;background:#000;border-radius:
   <div class="tiles">
     <a class="tile" href="#slides"><h3>Lecture slides</h3><p>Browse all 39 slides at your own pace.</p><span class="meta">Always open</span></a>
     <a class="tile" href="#summary"><h3>Summary and self-check</h3><p>Key messages, practice questions with answers, and references.</p><span class="meta">Always open</span></a>
+    <a class="tile" href="#slip"><h3>Attendance slip</h3><p>Finish all three videos and activities, then get your slip and submit a screenshot for attendance.</p><span class="pill" id="t4-pill">Locked</span></a>
   </div>
 
   <div class="grid2">
@@ -131,8 +140,44 @@ video{width:100%;max-width:100%;aspect-ratio:16/9;background:#000;border-radius:
         <li>Apply RNI 2017 targets to reformulate a food product <span class="pill">C3</span></li>
       </ol></div>
   </div>
-  <p class="note">Your video progress is remembered in this browser only, so use the same device and browser. Game answers are not saved or sent anywhere; copy your group summary into the GOALS forum before you close the page.</p>
+  <p class="note">Your video progress is remembered in this browser only, so use the same device and browser. Game answers are not saved or sent anywhere; copy your group summary into the GOALS forum before you close the page. When you finish everything, collect your <a href="#slip">attendance slip</a>.</p>
   <p class="small">Lecture by Dr. Syamila binti Mansor, Faculty of Science and Technology, USIM.</p>
+</section>
+
+<!-- ATTENDANCE SLIP -->
+<section id="v-slip" class="stack" hidden>
+  <a class="back" href="#home">← Home</a>
+  <p class="eyebrow">Attendance</p>
+  <h2>Attendance slip</h2>
+  <p>Your attendance for this online lecture is recorded from this slip. It unlocks when you have watched all three videos and finished all three activities on this device.</p>
+  <div class="card"><h3>Your progress</h3><ul class="checks" id="slip-checks"></ul></div>
+  <div class="card" id="slip-form" hidden>
+    <h3>Your details</h3>
+    <p class="small">Type your name and matric number exactly as they appear in your student records.</p>
+    <div class="field"><label for="slip-name">Full name</label><input id="slip-name" autocomplete="name" maxlength="80"></div>
+    <div class="field"><label for="slip-matric">Matric number</label><input id="slip-matric" autocomplete="off" maxlength="20"></div>
+    <p class="small" id="slip-err" role="alert"></p>
+    <div class="row"><button id="slip-make">Get my slip</button></div>
+  </div>
+  <div id="slip-out" hidden>
+    <div class="slip" id="slip-card">
+      <p class="eyebrow">Nutrition &amp; Health · USIM · Online lecture attendance</p>
+      <h3>Nutrition and Chronic Diseases: completion slip</h3>
+      <dl>
+        <dt>Name</dt><dd id="so-name"></dd>
+        <dt>Matric number</dt><dd id="so-matric"></dd>
+        <dt>Completed</dt><dd id="so-date"></dd>
+        <dt>Videos watched</dt><dd>3 of 3</dd>
+        <dt>Activity 1 score</dt><dd id="so-a1"></dd>
+        <dt>Activity 2 score</dt><dd id="so-a2"></dd>
+        <dt>Activity 3</dt><dd id="so-a3"></dd>
+      </dl>
+      <p class="small">Check code</p>
+      <p class="code" id="so-code"></p>
+    </div>
+    <div class="note"><b>Next step:</b> take a screenshot of the slip above (name, matric number and check code must be visible) and submit it as your lecturer instructs, for example in GOALS. Keep the screenshot until attendance is confirmed.</div>
+    <div class="row"><button class="ghost" id="slip-edit">Correct my name or matric number</button></div>
+  </div>
 </section>
 
 <!-- SLIDES -->
@@ -351,8 +396,8 @@ function copyText(btn, ta){
 function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 
 /* ---------- ROUTER ---------- */
-const views=['home','activity-1','activity-2','activity-3','slides','summary'];
-function route(){const h=location.hash.slice(1);const v=views.includes(h)?h:'home';views.forEach(x=>$('v-'+x).hidden=x!==v);window.scrollTo(0,0);if(v!=='activity-1')stopA1();if(v!=='activity-2')stopA2();[1,2,3].forEach(n=>{const el=$('vid'+n);if(el&&!el.paused)el.pause()});}
+const views=['home','activity-1','activity-2','activity-3','slides','summary','slip'];
+function route(){const h=location.hash.slice(1);const v=views.includes(h)?h:'home';views.forEach(x=>$('v-'+x).hidden=x!==v);window.scrollTo(0,0);if(v==='slip'||v==='home')slipRefresh();if(v!=='activity-1')stopA1();if(v!=='activity-2')stopA2();[1,2,3].forEach(n=>{const el=$('vid'+n);if(el&&!el.paused)el.pause()});}
 window.addEventListener('hashchange',route);
 
 /* ---------- ACTIVITY 1 ---------- */
@@ -394,7 +439,7 @@ function a1Answer(k){
 }
 function a1Next(){if(A1.lives<=0||A1.i>=A1.qs.length-1)return a1End();A1.i++;a1Show()}
 function a1End(){
-  $('a1-game').hidden=true;$('a1-end').hidden=false;const won=A1.lives>0;
+  $('a1-game').hidden=true;$('a1-end').hidden=false;const won=A1.lives>0;markDone('a1',{score:A1.score});
   $('a1-verdict').textContent=won?'Body defended':'Infection broke through';
   $('a1-final').textContent=A1.score+' points';
   $('a1-msg').textContent=won?'You held off all 10 waves with '+A1.lives+' shield(s) left. Adequate, varied nutrition keeps every line of defence working.':'You reached wave '+(A1.i+1)+'. Read the explanations again, then try for a full defence.';
@@ -453,7 +498,7 @@ function a2Pick(k){
 function a2Done(){
   $('a2-game').hidden=true;$('a2-fb').hidden=true;
   if(A2.round===1){A2.r1=A2.score;$('a2-r1').textContent=A2.score+' points';$('a2-mid').hidden=false}
-  else{$('a2-end').hidden=false;$('a2-final').textContent=A2.score+' points';
+  else{$('a2-end').hidden=false;$('a2-final').textContent=A2.score+' points';markDone('a2',{score:A2.score});
     const m=$('a2-missed');m.innerHTML='';
     if(!A2.missed.length){m.innerHTML='<p>None. Every card sorted correctly.</p>'}
     else{const ul=document.createElement('ul');A2.missed.forEach(x=>{const li=document.createElement('li');li.innerHTML='<b>'+x.f+'</b> → '+x.ans+'. '+x.why;ul.appendChild(li)});m.appendChild(ul)}
@@ -497,7 +542,7 @@ function lab(){
   const met=rows.filter(r=>r[5]).length;
   $('a3-acc').textContent=acc;$('a3-accbar').style.width=acc+'%';$('a3-accbar').style.background=acc>=70?'var(--ok)':'var(--bad)';
   $('a3-accwhy').textContent=why.length?why.join('. ')+'.':'Taste and texture close to the original.';
-  const pass=met===4&&acc>=70;
+  const pass=met===4&&acc>=70;if(pass)markDone('a3',{product:P.name});
   const st=$('a3-status');st.className='pill '+(pass?'ok':'no');st.textContent=pass?'Ready to launch':met+' of 4 targets met · acceptance '+(acc>=70?'OK':'too low');
   const stars=met+(acc>=70?1:0);
   $('a3-verdict').innerHTML=pass?'<b>Launch approved.</b> 5 of 5 stars. Write your summary below, then try another product.':'<b>Rating:</b> '+'★'.repeat(stars)+'☆'.repeat(5-stars)+' ('+stars+' of 5). Keep adjusting.';
@@ -560,6 +605,58 @@ function showSlide(n){si=Math.min(NS,Math.max(1,n));const im=$('sl-img');im.src=
 $('sl-prev').onclick=()=>showSlide(si-1);$('sl-next').onclick=()=>showSlide(si+1);$('sl-jump').onchange=e=>showSlide(+e.target.value);
 document.addEventListener('keydown',e=>{if($('v-slides').hidden)return;if(e.key==='ArrowRight')showSlide(si+1);if(e.key==='ArrowLeft')showSlide(si-1);});
 showSlide(1);
+
+/* ---------- ATTENDANCE SLIP ---------- */
+const SLIP_SALT='CDDL-A261-NCD';
+let DONEA={};
+try{DONEA=JSON.parse(localStorage.getItem('cddl-done')||'{}')}catch(e){}
+function saveDone(){try{localStorage.setItem('cddl-done',JSON.stringify(DONEA))}catch(e){}}
+function markDone(k,info){
+  const prev=DONEA[k]||{};
+  if(k==='a3'){const list=prev.products||[];if(!list.includes(info.product))list.push(info.product);DONEA[k]={products:list};}
+  else{DONEA[k]={score:Math.max(prev.score??-1e9,info.score)};}
+  saveDone();slipRefresh();
+}
+function allDone(){return [1,2,3].every(DONE)&&DONEA.a1&&DONEA.a2&&DONEA.a3}
+const normName=x=>x.trim().replace(/\s+/g,' ').toUpperCase();
+const normMat=x=>x.trim().replace(/\s+/g,'').toUpperCase();
+async function slipCode(name,matric,date,a1,a2,a3){
+  const txt=[SLIP_SALT,normName(name),normMat(matric),date,a1,a2,a3].join('|');
+  const h=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(txt));
+  const hex=[...new Uint8Array(h)].map(b=>b.toString(16).padStart(2,'0')).join('').toUpperCase();
+  return hex.slice(0,4)+'-'+hex.slice(4,8);
+}
+function slipRefresh(){
+  const items=[['Video 1 watched',DONE(1)],['Activity 1 finished',!!DONEA.a1],['Video 2 watched',DONE(2)],['Activity 2 finished (both rounds)',!!DONEA.a2],['Video 3 watched',DONE(3)],['Activity 3: one product ready to launch',!!DONEA.a3]];
+  const ul=$('slip-checks');if(ul)ul.innerHTML=items.map(([t,ok])=>'<li>'+(ok?'✔ ':'○ ')+t+'</li>').join('');
+  const ready=allDone();let saved=null;try{saved=JSON.parse(localStorage.getItem('cddl-slip')||'null')}catch(e){}
+  const pill=$('t4-pill');if(pill){pill.textContent=saved?'Slip ready ✔':(ready?'Ready to collect':'Locked');pill.className='pill'+((saved||ready)?' ok':'');}
+  if(!$('slip-form'))return;
+  $('slip-form').hidden=!ready||!!saved; $('slip-out').hidden=!saved;
+  if(saved)showSlip(saved);
+}
+function showSlip(d){
+  $('so-name').textContent=normName(d.name);$('so-matric').textContent=normMat(d.matric);$('so-date').textContent=d.date;
+  $('so-a1').textContent=d.a1+' points';$('so-a2').textContent=d.a2+' points';$('so-a3').textContent=d.a3+' product(s) ready to launch';$('so-code').textContent=d.code;
+}
+$('slip-make').onclick=async()=>{
+  const name=$('slip-name').value,matric=$('slip-matric').value;
+  if(normName(name).length<3||normMat(matric).length<4){$('slip-err').textContent='Please enter your full name and matric number.';return}
+  $('slip-err').textContent='';
+  let old=null;try{old=JSON.parse(localStorage.getItem('cddl-slip-date')||'null')}catch(e){}
+  const now=new Date();const pad=n=>String(n).padStart(2,'0');
+  const date=old||(now.getFullYear()+'-'+pad(now.getMonth()+1)+'-'+pad(now.getDate())+' '+pad(now.getHours())+':'+pad(now.getMinutes()));
+  try{localStorage.setItem('cddl-slip-date',JSON.stringify(date))}catch(e){}
+  const a1=DONEA.a1.score,a2=DONEA.a2.score,a3=DONEA.a3.products.length;
+  const code=await slipCode(name,matric,date,a1,a2,a3);
+  const d={name,matric,date,a1,a2,a3,code};
+  try{localStorage.setItem('cddl-slip',JSON.stringify(d))}catch(e){}
+  slipRefresh();$('slip-card').scrollIntoView({behavior:'smooth',block:'start'});
+};
+$('slip-edit').onclick=()=>{let d=null;try{d=JSON.parse(localStorage.getItem('cddl-slip')||'null')}catch(e){}
+  try{localStorage.removeItem('cddl-slip')}catch(e){}
+  if(d){$('slip-name').value=d.name;$('slip-matric').value=d.matric}slipRefresh();};
+slipRefresh();
 
 route();
 })();
